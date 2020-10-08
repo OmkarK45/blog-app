@@ -10,32 +10,48 @@ router.get("/", async (req, res) => {
     res.json({ blogs });
   } catch (error) {
     res.json({
-      error: "Failed to fetch posts ! Please try again.",
+      error: "Failed to fetch blogs ! Please try again.",
     });
   }
 });
 
-router.get('/new', async (req,res)=>{
-    try {
-        // Render the react page
-    } catch (error) {
-        res.json({error:'Some Error occured. Please try again.'})
-    }
-})
+router.get("/new", async (req, res) => {
+  try {
+    // Render the react page
+  } catch (error) {
+    res.json({ error: "Some Error occured. Please try again." }).status(500);
+  }
+});
 
-router.post('/new', async (req,res)=>{
-    const newBlog = new Blog({
-        title:req.body.title,
-        subtitle:req.body.subtitle,
-        authorID:req.body.username,
-        content:req.body.content,
-        date:req.body.date
-    })
-    try {
-        const savedBlog = await newBlog.save()
-        res.redirect('/')
-    } catch (error) {
-        res.json({error:'Some error occured while saving your blog. Please try again.'})
-    }
-})
+router.post("/new", async (req, res) => {
+  const newBlog = new Blog({
+    title: req.body.title,
+    subtitle: req.body.subtitle,
+    authorID: req.body.username,
+    content: req.body.content,
+    date: req.body.date,
+  });
+  try {
+    const savedBlog = await newBlog.save();
+    res.redirect("/blogs");
+    console.log(savedBlog);
+  } catch (error) {
+    res.json({
+      error: "Some error occured while saving your blog. Please try again.",
+    });
+  }
+});
+
+router.delete("/:blogID", async (req, res) => {
+  console.log("Found a delete request from react.");
+  try {
+    const removedBlog = await Blog.deleteOne({
+      _id: req.params.blogID,
+    });
+    res.redirect("/blogs");
+  } catch (error) {
+    res.json({ error: "Something went wrong. Please try again or refresh." });
+  }
+});
+
 module.exports = router;
