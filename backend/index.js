@@ -1,4 +1,5 @@
 require("dotenv").config();
+const morgan = require("morgan");
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -16,7 +17,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(methodOverride("_method"));
 app.use(cors());
-
+app.use(morgan("tiny"));
 // Routes
 app.use("/", homeRoute);
 app.use("/blogs", blogRoute);
