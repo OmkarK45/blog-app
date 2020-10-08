@@ -16,7 +16,7 @@ const blogSchema = new mongoose.Schema({
   authorID: {
     type: String,
   },
-  description: {
+  content: {
     type: String,
     min: 10,
     max: 3048,
