@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const methodOverride = require("method-override");
 const homeRoute = require("./routes/homeRoute");
@@ -22,6 +22,16 @@ app.use("/", homeRoute);
 app.use("/blogs", blogRoute);
 app.use("/user", authRoute);
 
+// DB Configuration
+mongoose.connect(
+  process.env.DB_URI_LOCAL,
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+  () => {
+    console.log("Connected to local database.");
+  }
+);
+
+// Express server Bootup
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log("Server has started on", `https://localhost:${PORT}`);
