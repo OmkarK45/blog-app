@@ -1,60 +1,26 @@
 require("dotenv").config();
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const bodyParser = require("body-parser");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const methodOverride = require("method-override");
+const homeRoute = require("./routes/homeRoute");
+const blogRoute = require("./routes/blogRoute");
+const authRoute = require("./routes/authRoute");
 const app = express();
 
+// Express setup
 app.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
+  bodyParser.urlencoded({ extended: false }, { useUnifiedTopology: true })
 );
 app.use(bodyParser.json());
-const posts = [
-  {
-    title: "Post number 1",
-    description: "I like dogs",
-    username: "Omkar",
-  },
-  {
-    title: "Post number 2",
-    description: "I like cats",
-    username: "Jim",
-  },
-  {
-    title: "Post number 3",
-    description: "I like bulldogs",
-    username: "Tim",
-  },
-];
+app.use(methodOverride("_method"));
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.json({ msg: "Hi Im home" });
-});
-
-app.get("/posts", authenticateToken, (req, res) => {
-  res.json(posts.filter((post) => post.username === req.user.name));
-});
-
-app.post("/login", (req, res) => {
-  // authentication logic
-  const username = req.body.username;
-  const user = { name: username };
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
-  res.json({ accessToken });
-});
-
-function authenticateToken(req, res, next) {
-  const authHeader = req.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
-  if (token == null) return res.sendStatus(401);
-
-  jwt.verify(token, process.env.ACCESS_TOKEN, (err, user) => {
-    if (err) return res.sendStatus(403);
-    req.user = user;
-    next();
-  });
-}
+// Routes
+app.use("/", homeRoute);
+app.use("/blogs", blogRoute);
+app.use("/user", authRoute);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
