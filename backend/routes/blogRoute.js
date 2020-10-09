@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const Blog = require("../models/Blog");
+const authentication = require("../middleware/authentication");
 
 router.get("/", async (req, res) => {
   try {
@@ -15,15 +16,16 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/new", async (req, res) => {
+router.get("/new", authentication, async (req, res) => {
   try {
     // Render the react page
+    console.log(req.user);
   } catch (error) {
     res.json({ error: "Some Error occured. Please try again." }).status(500);
   }
 });
 
-router.post("/new", async (req, res) => {
+router.post("/new", authentication, async (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
     subtitle: req.body.subtitle,
@@ -42,11 +44,12 @@ router.post("/new", async (req, res) => {
   }
 });
 
-router.delete("/:blogID", async (req, res) => {
+router.delete("/:username/:blogID", authentication, async (req, res) => {
   console.log("Found a delete request from react.");
   try {
     const removedBlog = await Blog.deleteOne({
       _id: req.params.blogID,
+      authorID: req.params.username,
     });
     res.redirect("/blogs");
   } catch (error) {
@@ -54,11 +57,12 @@ router.delete("/:blogID", async (req, res) => {
   }
 });
 
-router.patch("/:blogID", async (req, res) => {
+router.patch("/:username/:blogID", authentication, async (req, res) => {
   try {
     const updatedBlog = await Blog.updateOne(
       {
         _id: req.params.blogID,
+        authorID: req.params.username,
       },
       {
         $set: {
@@ -70,7 +74,7 @@ router.patch("/:blogID", async (req, res) => {
         },
       }
     );
-    res.redirect('/blogs')
+    res.redirect("/blogs");
   } catch (error) {
     res.json({
       error:

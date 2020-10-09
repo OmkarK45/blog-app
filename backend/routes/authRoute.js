@@ -3,8 +3,42 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const authentication = require("../middleware/authentication");
 
 router.get("/login", (req, res) => {});
+
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password)
+    return res.json({ error: "Please make sure to enter all fields." });
+
+  User.findOne({ email }).then((user) => {
+    if (!user)
+      return res.status(400).json({
+        error: "User does not exist in database. Please register first.",
+      });
+
+    bcrypt.compare(password, user.password).then((isMatch) => {
+      if (!isMatch)
+        return res
+          .status(400)
+          .json({ error: "Invalid Credentials. Please check again." });
+
+      jwt.sign({ id: user._id }, process.env.JWT_SECRET, (err, token) => {
+        if (err) throw err;
+        res.json({
+          token: token,
+          user: {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+          },
+        });
+      });
+    });
+  });
+});
 
 router.get("/register", (req, res) => {
   res.json({
@@ -15,7 +49,8 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
   try {
     const { username, name, email, password, avatar, socialMedia } = req.body;
-
+    if (!username || !email || !password)
+      return res.json({ error: "Please fill all the fields." });
     const result = await User.findOne({
       email: email,
     });
