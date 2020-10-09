@@ -7,12 +7,14 @@ import NewBlog from "./components/pages/NewBlog/NewBlog.component";
 import Login from "./components/pages/Auth/Login.component";
 import Register from "./components/pages/Auth/Register.component";
 import NotFound from "./components/pages/404/NotFound.component";
+import Header from './components/common/Header/Header.component';
 
 const App = () => {
   return (
     <>
       {/* Routing of the app */}
       <Router>
+        <Header/>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/blogs" exact component={Blogs} />

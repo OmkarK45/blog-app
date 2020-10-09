@@ -1,0 +1,32 @@
+.header {
+  border-bottom: 1px solid #eee;
+  box-shadow: rgba(3, 27, 78, 0.1) 0px 2px 4px;
+  position: sticky;
+}
+.nav {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.6rem 0;
+  justify-content: space-between;
+  align-items: center;
+  color:black;
+}
+.links {
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  a {
+    margin: 0 2rem;
+  }
+  a:hover {
+    color: #0061ff;
+  }
+}
+.btn {
+  background-color: black;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+}
