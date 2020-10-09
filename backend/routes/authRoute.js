@@ -14,19 +14,27 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { username, name, email, password } = req.body;
+    const { username, name, email, password, avatar, socialMedia } = req.body;
 
     const result = await User.findOne({
       email: email,
     });
+
     if (result) {
-      throw err;
+      res
+        .json({
+          msg:
+            "User already exist in database. Please try with a different email.",
+        })
+        .status(400);
     } else {
       const newUser = new User({
         username,
         name,
         email,
         password,
+        avatar,
+        socialMedia,
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (error, hash) => {
@@ -36,13 +44,14 @@ router.post("/register", async (req, res) => {
 
           newUser.save().then((user) => {
             console.log("Registration succeed.");
-            res.json({msg:"User registered."})
+            res.json({ msg: "User registered." }).status(200);
+            // redirect user after registration.
           });
         });
       });
     }
   } catch (error) {
-    res.json({ error: "Some Error occured." });
+    res.json({ error: "Some Error occured." }).status(501);
   }
 });
 
