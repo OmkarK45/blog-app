@@ -6,6 +6,7 @@ import Blogs from "./components/pages/Blogs/Blogs.component";
 import NewBlog from "./components/pages/NewBlog/NewBlog.component";
 import Login from "./components/pages/Auth/Login.component";
 import Register from "./components/pages/Auth/Register.component";
+import NotFound from "./components/pages/404/NotFound.component";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/blogs/new" exact component={NewBlog} />
           <Route path="/user/login" exact component={Login} />
           <Route path="/user/register" exact component={Register} />
+          <Route component={NotFound} />
         </Switch>
       </Router>
     </>
