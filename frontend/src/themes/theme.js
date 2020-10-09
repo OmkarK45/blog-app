@@ -2,8 +2,13 @@ export default {
   breakpoints: ["30em", "48em", "62em", "80em"],
   fonts: {
     heading: '"Kumbh Sans", sans-serif',
-    body: "system-ui, sans-serif",
+    body: '"Kumbh Sans",system-ui, sans-serif',
     mono: "Menlo, monospace",
+  },
+  fontWeights: {
+    bold: "700",
+    light: "300",
+    regular: "400",
   },
   fontSizes: {
     xs: "0.75rem",
@@ -16,5 +21,6 @@ export default {
     "4xl": "2.25rem",
     "5xl": "3rem",
     "6xl": "4rem",
+    "7xl": "7rem",
   },
 };

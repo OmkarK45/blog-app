@@ -2,6 +2,9 @@ import React from "react";
 import "./Header.styles.scss";
 import { Heading, Flex, Box, Text } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import theme from '../../../themes/theme'
+
+
 const Header = (props) => {
   return (
     <React.Fragment>
@@ -9,7 +12,7 @@ const Header = (props) => {
         <nav className="nav">
           <ul className="logo">
             <li>
-              <Heading>Blog.</Heading>
+              <Heading style={{fontFamily:theme.fonts.body, fontWeight:400}}><Link to="/">Blog.</Link></Heading>
             </li>
           </ul>
           <ul className="links">
