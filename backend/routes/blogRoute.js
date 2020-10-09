@@ -54,4 +54,28 @@ router.delete("/:blogID", async (req, res) => {
   }
 });
 
+router.patch("/:blogID", async (req, res) => {
+  try {
+    const updatedBlog = await Blog.updateOne(
+      {
+        _id: req.params.blogID,
+      },
+      {
+        $set: {
+          title: req.body.title,
+          subtitle: req.body.subtitle,
+          authorID: req.body.username,
+          content: req.body.content,
+          date: req.body.date,
+        },
+      }
+    );
+    res.redirect('/blogs')
+  } catch (error) {
+    res.json({
+      error:
+        "Some error occured while editing the blog. Please make sure you are authenticated.",
+    });
+  }
+});
 module.exports = router;
