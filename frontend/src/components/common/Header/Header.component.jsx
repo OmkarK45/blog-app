@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import userContext from "../../../context/userContext";
 import "./Header.styles.scss";
-import { Heading, Flex, Box, Text, Button } from "@chakra-ui/core";
+import { Heading, Flex, Box, Text, Button, useToast } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import theme from "../../../themes/theme";
 
 const Header = (props) => {
   const { userData, setUserData } = useContext(userContext);
+  const toast = useToast()
   const logout = () => {
+    toast({
+      title:'Successfully logged out.',
+      status:'info'
+    })
     setUserData({
       token: undefined,
       user: undefined,

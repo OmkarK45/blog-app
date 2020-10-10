@@ -9,6 +9,7 @@ import {
   Box,
   Input,
   Heading,
+  useToast,
   Button,
 } from "@chakra-ui/core";
 import theme from "../../../themes/theme";
@@ -21,7 +22,7 @@ const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setUserData } = useContext(userContext);
-
+  const toast = useToast();
   const history = useHistory();
   const handleEmail = (e) => {
     const userEmail = e.target.value;
@@ -31,20 +32,31 @@ const Login = (props) => {
     const userPassword = e.target.value;
     setPassword(userPassword);
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginCreds = { email, password };
     axios
       .post("/user/login", loginCreds)
-      .then((res) =>
+      .then((res) => {
         setUserData({
           token: res.data.token,
           user: res.data.user,
-        })
-      )
-      .catch((error) => console.log(error));
-    history.push("/");
+        });
+        toast({
+          title: "Logged in !",
+          status: "success",
+        });
+        history.push("/");
+      })
+      .catch((err) => {
+        toast({
+          title: "Error!",
+          description: err.response.data.msg,
+          isClosable: true,
+          status: "warning",
+        });
+      });
   };
 
   return (

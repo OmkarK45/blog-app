@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
   User.findOne({ email }).then((user) => {
     if (!user)
       return res.status(400).json({
-        error: "User does not exist in database. Please register first.",
+        msg: "Invalid Credentials. Please check again.",
       });
 
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -83,7 +83,7 @@ router.post("/register", async (req, res) => {
   try {
     const { username, name, email, password, avatar, socialMedia } = req.body;
     if (!username || !email || !password)
-      return res.json({ error: "Please fill all the fields." });
+      return res.status(400).json({ error: "Please fill all the fields." });
     const result = await User.findOne({
       email: email,
     });

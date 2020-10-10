@@ -7,6 +7,7 @@ import {
   Flex,
   Box,
   Input,
+  useToast,
   Heading,
   Button,
 } from "@chakra-ui/core";
@@ -19,6 +20,8 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const { setUserData } = useContext(userContext);
+  const toast = useToast()
+
   const history = useHistory();
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -36,18 +39,38 @@ const Register = () => {
     e.preventDefault();
     const registerCreds = { email, password, username, avatar };
     const loginCreds = { email, password };
-    await axios.post("/user/register", registerCreds);
+    await axios.post("/user/register", registerCreds)
+    .then(res=>{
+      console.log(res)
+      history.push("/");
+    })
+    .catch(err=>{
+      toast({title:'Error!', description:err.response.data.error, status:"error"})
+      history.push('/register')
+    })
     axios
       .post("/user/login", loginCreds)
-      .then((res) =>
+      .then((res) =>{
         setUserData({
           token: res.data.token,
           user: res.data.user,
         })
+        if(res.data.error){
+          history.push("/user/register")
+        }else{
+          history.push("/")
+        }
+      }
       )
-      .catch((error) => console.log(error));
+      .catch((err) => {
+        toast({
+          title:"Error!",
+          description:err.response.data.error
+        })
+        history.push("/user/register")
+      });
 
-    history.push("/");
+    
   };
 
   return (
