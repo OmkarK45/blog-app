@@ -5,21 +5,18 @@ import { Heading, Text } from "@chakra-ui/core";
 import "./Home.styles.scss";
 import theme from "../../../themes/theme";
 import { Link } from "react-router-dom";
-import home from '../../../assets/Images/home.svg'
+import home from "../../../assets/Images/home.svg";
 const Home = (props) => {
   return (
     <React.Fragment>
-       
-
-        
       <Box
-        minH="60vh"
+      className='banner'
+        minH="91vh"
         display="flex"
         justifyContent="center"
-        alignItems="center"
       >
-        <Flex>
-          <Box padding='0 1rem' margin="0 auto">
+        <Flex marginTop='10rem'>
+          <Box padding="0 1rem" margin="0 auto">
             <Text
               style={{
                 fontFamily: theme.fonts.body,
@@ -55,7 +52,6 @@ const Home = (props) => {
           </Box>
         </Flex>
       </Box>
-      
     </React.Fragment>
   );
 };
