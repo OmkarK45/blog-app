@@ -5,6 +5,14 @@ export default {
     body: '"Kumbh Sans",system-ui, sans-serif',
     mono: "Menlo, monospace",
   },
+  colors: {
+    primary: "#4F9D69",
+    danger: "#DD0426",
+    info: "#9191E9",
+    dark:"#230C33",
+    purple:"#592E83",
+    
+  },
   fontWeights: {
     bold: "700",
     light: "300",

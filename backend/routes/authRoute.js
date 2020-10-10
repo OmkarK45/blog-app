@@ -11,7 +11,9 @@ router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password)
-    return res.json({ error: "Please make sure to enter all fields." });
+    return res
+      .json({ error: "Please make sure to enter all fields." })
+      .status(400);
 
   User.findOne({ email }).then((user) => {
     if (!user)
@@ -37,6 +39,37 @@ router.post("/login", async (req, res) => {
         });
       });
     });
+  });
+});
+
+router.post("/tokenIsValid", async (req, res) => {
+  try {
+    const token = req.header("x-auth-token");
+    if (!token) return res.json(false);
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.json(false);
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.json(false);
+
+    return res.json(true);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/", authentication, async (req, res) => {
+  const { username, socialMedia, _id, email, blogs } = await User.findById(
+    req.user.id
+  );
+
+  res.json({
+    username,
+    socialMedia,
+    _id,
+    email,
+    blogs,
   });
 });
 

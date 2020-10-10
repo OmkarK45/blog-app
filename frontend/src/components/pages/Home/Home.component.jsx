@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Flex } from "@chakra-ui/core";
 import { Box } from "@chakra-ui/core";
 import { Heading, Text } from "@chakra-ui/core";
@@ -6,16 +6,20 @@ import "./Home.styles.scss";
 import theme from "../../../themes/theme";
 import { Link } from "react-router-dom";
 import home from "../../../assets/Images/home.svg";
+import userContext from "../../../context/userContext";
+
 const Home = (props) => {
+  const { userData } = useContext(userContext);
+
   return (
     <React.Fragment>
       <Box
-      className='banner'
+        className="banner"
         minH="91vh"
         display="flex"
         justifyContent="center"
       >
-        <Flex marginTop='10rem'>
+        <Flex marginTop="10rem">
           <Box padding="0 1rem" margin="0 auto">
             <Text
               style={{
@@ -37,14 +41,20 @@ const Home = (props) => {
               Publish your first blog.
             </Text>
             <Box mt="2rem">
-              <Button
-                textTransform="uppercase"
-                marginRight="5"
-                variantColor="teal"
-                variant="solid"
-              >
-                <Link to="/user/login">Login</Link>
-              </Button>
+              {userData.user ? (
+                ""
+              ) : (
+                <Button
+                  textTransform="uppercase"
+                  marginRight="5"
+                  backgroundColor={theme.colors.primary}
+                  color="white"
+                  _hover="color:black"
+                >
+                  <Link to="/user/login">Login</Link>
+                </Button>
+              )}
+
               <Button textTransform="uppercase">
                 <Link to="/blogs">Explore Blogs</Link>
               </Button>
