@@ -33,6 +33,7 @@ const NewBlog = () => {
       authorID: userData.user.username,
       date: Date.now(),
       bannerURL: bannerURL,
+      
     };
     console.log("Complete Blog is ", blogData);
     // make a post request to /blogs/new

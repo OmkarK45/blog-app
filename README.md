@@ -63,3 +63,8 @@ Schema Blog Post
 # Render blog as a markdown 
 1. Dependency #1 - @uiw/react-md-editor
 2. Render the markdown - react-markdown
+
+# Todos
+- Render use profile picture on the navbar. 
+- Ability to save writing as a draft.
+- Animations 

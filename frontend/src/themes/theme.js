@@ -12,7 +12,8 @@ export default {
     dark: "#230C33",
     purple: "#592E83",
     accent: "#3b49df",
-    accentDark:'#323EBE'
+    accentDark:'#323EBE',
+    background:"#EEF0F1"
   },
   fontWeights: {
     bold: "700",

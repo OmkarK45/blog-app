@@ -32,7 +32,7 @@ router.post("/new", authentication, async (req, res) => {
     authorID: req.body.authorID,
     content: req.body.content,
     date: req.body.date,
-    bannerURL: req.body.bannerURL
+    bannerURL: req.body.bannerURL,
   });
   try {
     const savedBlog = await newBlog.save();
@@ -42,6 +42,19 @@ router.post("/new", authentication, async (req, res) => {
     res.json({
       error: "Some error occured while saving your blog. Please try again.",
     });
+  }
+});
+
+router.get("/:blogID", async (req, res) => {
+  try {
+    const foundBlog = await Blog.findById(req.params.blogID);
+    if (foundBlog) {
+      res.json(foundBlog);
+    } else {
+      throw error;
+    }
+  } catch (error) {
+    res.status(404).json({ msg: "Blog not found." });
   }
 });
 

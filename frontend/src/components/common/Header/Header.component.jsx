@@ -20,13 +20,14 @@ const Header = (props) => {
       token: undefined,
       user: undefined,
     });
-    // history.push("/");
+    history.push("/");
     localStorage.setItem("auth-token", "");
     localStorage.setItem("x-auth-token", "");
   };
   return (
     <React.Fragment>
-      <header className="header">
+      <Box position='fixed' width='100%'>
+      <header className="header" style={{backgroundColor:'white'}}>
         <nav className="nav">
           <ul className="logo">
             <li>
@@ -44,13 +45,16 @@ const Header = (props) => {
               <Box>
                 <Button
                   padding={["0.3rem", "1rem"]}
-                  backgroundColor={theme.colors.info}
+                  backgroundColor={theme.colors.accent}
+                  maxW='7rem'
+                  margin='0 1rem'
+                  color='white'
                 >
                   {" "}
                   <Link to="/blogs/new">
                     <Flex>
                       <AiOutlineFileAdd />
-                      <Text marginLeft="0.3rem">New Blog</Text>
+                      <Text marginLeft="0.3rem" >New Blog</Text>
                     </Flex>
                   </Link>
                 </Button>
@@ -67,6 +71,7 @@ const Header = (props) => {
           </ul>
         </nav>
       </header>
+      </Box>
     </React.Fragment>
   );
 };
