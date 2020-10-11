@@ -22,6 +22,7 @@ const Header = (props) => {
     });
     // history.push("/");
     localStorage.setItem("auth-token", "");
+    localStorage.setItem("x-auth-token", "");
   };
   return (
     <React.Fragment>

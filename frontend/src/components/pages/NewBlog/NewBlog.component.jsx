@@ -1,15 +1,27 @@
 import React, { useContext } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
-import { Box, Flex, Text, Heading, Button, Input } from "@chakra-ui/core";
+import {
+  Box,
+  Flex,
+  Text,
+  Heading,
+  Button,
+  Input,
+  useToast,
+} from "@chakra-ui/core";
 import theme from "../../../themes/theme";
 import userContext from "../../../context/userContext";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const NewBlog = () => {
   const [value, setValue] = useState();
   const [bannerURL, setBannerURL] = useState("");
   const [blogTitle, setBlogTitle] = useState("");
   const { userData } = useContext(userContext);
+  const toast = useToast();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +33,26 @@ const NewBlog = () => {
       date: Date.now(),
     };
     console.log("Complete Blog is ", blogData);
+    // make a post request to /blogs/new
+    const options = {
+      headers: {
+        "x-auth-token": userData.token,
+      },
+    };
+
+    if (userData.user.id) {
+      axios
+        .post("/blogs/new", blogData, options)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err.response));
+    } else {
+      toast({
+        title: "Error !",
+        status: "error",
+        description: "You need to be logged in to do that.",
+      });
+      history.push("/user/login");
+    }
   };
   const handleBannerURL = (e) => {
     setBannerURL(e.target.value);

@@ -36,14 +36,19 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginCreds = { email, password };
-    if(!email || !password) return toast({title:'Please fill all the fields.'})
+    if (!email || !password)
+      return toast({ title: "Please fill all the fields." });
     axios
       .post("/user/login", loginCreds)
       .then((res) => {
+        console.log(res.data.user);
         setUserData({
           token: res.data.token,
           user: res.data.user,
         });
+        localStorage.setItem("x-auth-token", res.data.token);
+        localStorage.setItem("auth-token", res.data.token);
+
         toast({
           title: "Logged in !",
           status: "success",
