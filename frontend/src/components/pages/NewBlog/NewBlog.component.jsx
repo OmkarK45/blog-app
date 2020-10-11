@@ -24,7 +24,7 @@ const NewBlog = () => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
-    console.log('Current userdata is ', userData);
+    console.log("Current userdata is ", userData);
     e.preventDefault();
     // console.log(value);
     const blogData = {
@@ -32,6 +32,7 @@ const NewBlog = () => {
       content: value,
       authorID: userData.user.username,
       date: Date.now(),
+      bannerURL: bannerURL,
     };
     console.log("Complete Blog is ", blogData);
     // make a post request to /blogs/new
@@ -44,8 +45,17 @@ const NewBlog = () => {
     if (userData.user.id) {
       axios
         .post("/blogs/new", blogData, options)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err.response));
+        .then(() => history.push("/blogs"))
+        .catch((err) => {
+          toast({
+            title: "Error!",
+            description:
+              "Error occured while publishing your blog. Please try later.",
+            isClosable: true,
+            status: "error",
+          });
+          history.push("/blogs");
+        });
     } else {
       toast({
         title: "Error !",
