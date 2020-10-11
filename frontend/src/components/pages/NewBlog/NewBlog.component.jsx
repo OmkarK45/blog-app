@@ -24,12 +24,13 @@ const NewBlog = () => {
   const history = useHistory();
 
   const handleSubmit = (e) => {
+    console.log('Current userdata is ', userData);
     e.preventDefault();
-    console.log(value);
+    // console.log(value);
     const blogData = {
       title: blogTitle,
       content: value,
-      authorID: userData.user,
+      authorID: userData.user.username,
       date: Date.now(),
     };
     console.log("Complete Blog is ", blogData);

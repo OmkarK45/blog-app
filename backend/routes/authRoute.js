@@ -85,7 +85,7 @@ router.post("/register", async (req, res) => {
     if (!username || !email || !password)
       return res.status(400).json({ error: "Please fill all the fields." });
     const result = await User.findOne({
-      email: email,
+      $or: [{ email: email }, { username: username }],
     });
 
     if (result) {

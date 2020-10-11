@@ -29,7 +29,7 @@ router.post("/new", authentication, async (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
     subtitle: req.body.subtitle,
-    authorID: req.body.username,
+    authorID: req.body.authorID,
     content: req.body.content,
     date: req.body.date,
     bannerURL: req.body.bannerURL
