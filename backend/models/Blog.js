@@ -8,6 +8,10 @@ const blogSchema = new mongoose.Schema({
     max: 256,
     min: 5,
   },
+  bannerURL: {
+    type: String,
+    required: false,
+  },
   subtitle: {
     type: String,
     min: 3,

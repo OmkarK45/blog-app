@@ -1,35 +1,77 @@
-import React from "react";
+import React, { useContext } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import { Box, Flex, Text, Heading, Button, Input } from "@chakra-ui/core";
 import theme from "../../../themes/theme";
+import userContext from "../../../context/userContext";
 
 const NewBlog = () => {
   const [value, setValue] = useState();
+  const [bannerURL, setBannerURL] = useState("");
+  const [blogTitle, setBlogTitle] = useState("");
+  const { userData } = useContext(userContext);
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log(value);
+    const blogData = {
+      title: blogTitle,
+      content: value,
+      authorID: userData.user,
+      date: Date.now(),
+    };
+    console.log("Complete Blog is ", blogData);
   };
+  const handleBannerURL = (e) => {
+    setBannerURL(e.target.value);
+  };
+  const handleBlogTitle = (e) => {
+    setBlogTitle(e.target.value);
+  };
+
   return (
     <React.Fragment>
-      <Flex flexDirection="column" maxW={['90%', '1200px']} padding='0.5rem 1rem' border='1px solid #eee' borderRadius='10px' margin="1rem auto">
+      <Flex
+        flexDirection="column"
+        maxW={["90%", "1200px"]}
+        padding="0.5rem 1rem"
+        border="1px solid #eee"
+        borderRadius="10px"
+        margin="1rem auto"
+      >
         <form onSubmit={handleSubmit}>
-          <Heading margin='1rem 0'>New Blog</Heading>
-          <Input margin='1rem 0' placeholder='New blog title here...'/>
+          <Flex margin="1rem 0" alignItems="center">
+            <Heading marginRight="2rem">New Blog</Heading>
+            <Input
+              width="50%"
+              value={bannerURL}
+              onChange={handleBannerURL}
+              name="bannerURL"
+              placeholder="Add Banner Image..."
+            />
+          </Flex>
+          <Input
+            margin="1rem 0"
+            id="title"
+            value={blogTitle}
+            onChange={handleBlogTitle}
+            type="text"
+            name="title"
+            placeholder="New blog title here..."
+          />
           <Box></Box>
           <MDEditor height={400} value={value} onChange={setValue} />
-          <Flex  margin='1rem 0'>
+          <Flex margin="1rem 0">
             <Button
               backgroundColor={theme.colors.accent}
               color="white"
-             
               _hover={{ color: "white", backgroundColor: "#323EBE" }}
-              type='submit'
+              type="submit"
             >
               Publish
             </Button>
             {/* Future update : Save draft feature */}
-            <Button marginLeft='2rem' isDisabled={true}>  
+            <Button marginLeft="2rem" isDisabled={true}>
               Save as a draft
             </Button>
           </Flex>
