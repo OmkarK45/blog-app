@@ -36,6 +36,7 @@ const Login = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginCreds = { email, password };
+    if(!email || !password) return toast({title:'Please fill all the fields.'})
     axios
       .post("/user/login", loginCreds)
       .then((res) => {

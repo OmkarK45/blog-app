@@ -4,19 +4,23 @@ import "./Header.styles.scss";
 import { Heading, Flex, Box, Text, Button, useToast } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import theme from "../../../themes/theme";
+import { AiOutlineFileAdd } from "react-icons/ai";
+import { useHistory } from "react-router-dom";
 
 const Header = (props) => {
   const { userData, setUserData } = useContext(userContext);
-  const toast = useToast()
+  const history = useHistory();
+  const toast = useToast();
   const logout = () => {
     toast({
-      title:'Successfully logged out.',
-      status:'info'
-    })
+      title: "Successfully logged out.",
+      status: "info",
+    });
     setUserData({
       token: undefined,
       user: undefined,
     });
+    // history.push("/");
     localStorage.setItem("auth-token", "");
   };
   return (
@@ -33,8 +37,24 @@ const Header = (props) => {
             </li>
           </ul>
           <ul className="links">
-            {userData.user ? (
-              <Button onClick={logout}>Log out</Button>
+            <Link to="/blogs">Explore</Link>
+            {/* Add userData.user !== undefined on below line to enable user auth */}
+            {userData.user  ? (
+              <Box>
+                <Button
+                  padding={["0.3rem", "1rem"]}
+                  backgroundColor={theme.colors.info}
+                >
+                  {" "}
+                  <Link to="/blogs/new">
+                    <Flex>
+                      <AiOutlineFileAdd />
+                      <Text marginLeft="0.3rem">New Blog</Text>
+                    </Flex>
+                  </Link>
+                </Button>
+                <Button onClick={logout}>Log out</Button>
+              </Box>
             ) : (
               <>
                 <Link to="/user/login">
@@ -43,8 +63,6 @@ const Header = (props) => {
                 <Link to="/user/register">Register</Link>
               </>
             )}
-
-            <Link to="/blogs">Explore</Link>
           </ul>
         </nav>
       </header>

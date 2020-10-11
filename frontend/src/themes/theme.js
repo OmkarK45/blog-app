@@ -9,9 +9,10 @@ export default {
     primary: "#4F9D69",
     danger: "#DD0426",
     info: "#9191E9",
-    dark:"#230C33",
-    purple:"#592E83",
-    
+    dark: "#230C33",
+    purple: "#592E83",
+    accent: "#3b49df",
+    accentDark:'#323EBE'
   },
   fontWeights: {
     bold: "700",
