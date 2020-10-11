@@ -47,7 +47,7 @@ const Login = (props) => {
           title: "Logged in !",
           status: "success",
         });
-        history.push("/");
+        history.push("/blogs");
       })
       .catch((err) => {
         toast({

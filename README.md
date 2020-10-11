@@ -48,3 +48,13 @@ Schema Blog Post
  - [ ] Footer
  - [ ] Login and register component
 
+### Blog Component Dev.to case study.
+- [] - Banner Image.
+- [] - Bold Title
+- [] - Tags like #webdev, #security etc
+- [] - Profile Avatar - Name - Date - Edit date.
+- [] - Article itself in markdown..
+- [] - End card with info about user. and their social media links.
+- [] - Discussion w/Comments
+- [] - Blog suggestions 
+- [] - Footer

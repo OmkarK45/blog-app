@@ -1,6 +1,6 @@
 .header {
   border-bottom: 1px solid #eee;
-  box-shadow: rgba(3, 27, 78, 0.1) 0px 2px 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   position: sticky;
 }
 .nav {
@@ -30,9 +30,9 @@
   border-radius: 6px;
 }
 @media (max-width: 768px) {
-    .nav{
-        padding: 0.6rem 0.5rem;
-    }
+  .nav {
+    padding: 0.6rem 0.5rem;
+  }
   .links {
     a {
       margin: 0 0.9rem;
@@ -40,6 +40,8 @@
   }
 }
 
-@media(max-width:992px){
-    .nav{padding:0.5rem 1rem}
+@media (max-width: 992px) {
+  .nav {
+    padding: 0.5rem 1rem;
+  }
 }
