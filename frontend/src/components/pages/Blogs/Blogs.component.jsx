@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/core";
 import BlogCard from "./../BlogCard/BlogCard.component";
 import theme from "../../../themes/theme";
-import './Blogs.styles.scss'
+import "./Blogs.styles.scss";
 
 const Blogs = () => {
   //   const [blogsList, setBlogsList] = useState();
@@ -34,15 +34,28 @@ const Blogs = () => {
         gap={2}
         backgroundColor={theme.colors.background}
       >
-        <Box w="100%" h="10" border='1px solid #eee' className="sidebar" />
+        <Box
+          w="100%"
+          display={["none", "none", "none", "block"]}
+          border="1px solid #000"
+          className="sidebar"
+        />
         <Box>
-            <Heading fontFamily={theme.fonts.body} marginTop='1rem' textAlign={['center', 'left']}>Trending Blogs</Heading>
+          <Heading
+            fontFamily={theme.fonts.body}
+            marginTop="1rem"
+            textAlign={["center", "left"]}
+          >
+            Trending Blogs
+          </Heading>
           <Flex direction="column">
             <Box w="100%" margin="1rem 0">
               {data.blogs ? (
                 <Box>
                   {data.blogs &&
-                    data.blogs.map((b) =><BlogCard data={b}/>).reverse()}
+                    data.blogs
+                      .map((b) => <BlogCard key={b.date} data={b} />)
+                      .reverse()}
                 </Box>
               ) : (
                 <Heading>No Blogs found.</Heading>
@@ -50,7 +63,12 @@ const Blogs = () => {
             </Box>
           </Flex>
         </Box>
-        <Box w="100%" h="10" border='1px solid #eee' className="tag-list" />
+        <Box
+          w="100%"
+          display={["none", "none", "none", "block"]}
+          border="1px solid #000"
+          className="tag-list"
+        />
       </Grid>
     </div>
   );

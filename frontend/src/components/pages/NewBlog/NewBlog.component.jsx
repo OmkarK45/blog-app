@@ -26,8 +26,8 @@ const NewBlog = () => {
   const handleSubmit = (e) => {
     console.log("Current userdata is ", userData);
     e.preventDefault();
-    const { username, email, user, token } = userData;
-    if (!username || !email || !user || !token) {
+    const { user, token } = userData;
+    if (!user.username || !user.id || !user.email || !token) {
       toast({
         title: "Error!",
         description: "You need to be logged in to do that.",
