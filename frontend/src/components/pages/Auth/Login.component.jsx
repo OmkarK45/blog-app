@@ -67,13 +67,14 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <Flex justifyContent="center">
+      <Flex justifyContent="center" >
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}
           border="1px solid #eee"
           marginTop={["2rem", "2rem", "4rem", "6rem"]}
           padding="2rem"
           borderRadius="15px"
+          backgroundColor="white"
         >
           <Box margin="0 auto">
             <Heading>Login.</Heading>
