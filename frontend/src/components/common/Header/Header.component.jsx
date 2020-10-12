@@ -38,16 +38,16 @@ const Header = (props) => {
                 </Heading>
               </ListItem>
             </List>
-            <ul className="links">
+            <List margin={['0']} className="links" >
               <Link to="/blogs">Explore</Link>
               {/* Add userData.user !== undefined on below line to enable user auth */}
               {userData.user ? (
-                <Box>
+                <Box margin={['0', '0 auto']}>
                   <Button
-                    padding={["0.3rem", "1rem"]}
+                    padding={["0.2rem", "1rem"]}
                     backgroundColor={theme.colors.accent}
                     maxW="7rem"
-                    margin="0 1rem"
+                    margin={['0 0.2rem', '0 1rem']}
                     color="white"
                   >
                     {" "}
@@ -68,7 +68,7 @@ const Header = (props) => {
                   <Link to="/user/register">Register</Link>
                 </>
               )}
-            </ul>
+            </List>
           </Flex>
         </header>
       </Box>
