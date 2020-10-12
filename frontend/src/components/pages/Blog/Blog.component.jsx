@@ -1,7 +1,14 @@
-import React from 'react';
+import React from "react";
 
-const Blog = () => {
-    return ( <h1>Blog</h1> );
-}
- 
+const Blog = ({
+  location: {
+    state: {
+      props: { data },
+    },
+  },
+}) => {
+    console.log(data);
+  return <h1>Blog</h1>;
+};
+
 export default Blog;

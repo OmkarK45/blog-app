@@ -10,7 +10,12 @@ const BlogCard = (props) => {
     "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1007&q=80";
 
   return (
-    <Link to={`/blogs/${props.data.authorID}/${props.data._id}`}>
+    <Link
+      to={{
+        pathname: `/blogs/${props.data.authorID}/${props.data._id}`,
+        state: { ...{props} },
+      }}
+    >
       <Box
         maxH="400px"
         margin="1rem 0"
