@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import userContext from "../../../context/userContext";
 import "./Header.styles.scss";
-import { Heading, Flex, Box, Text, Button, useToast } from "@chakra-ui/core";
+import { Heading, Flex, Box, Text, Button, useToast, List, ListItem } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import theme from "../../../themes/theme";
 import { AiOutlineFileAdd } from "react-icons/ai";
@@ -26,51 +26,51 @@ const Header = (props) => {
   };
   return (
     <React.Fragment>
-      <Box position='fixed' width='100%'>
-      <header className="header" style={{backgroundColor:'white'}}>
-        <nav className="nav">
-          <ul className="logo">
-            <li>
-              <Heading
-                style={{ fontFamily: theme.fonts.body, fontWeight: 400 }}
-              >
-                <Link to="/">Blog.</Link>
-              </Heading>
-            </li>
-          </ul>
-          <ul className="links">
-            <Link to="/blogs">Explore</Link>
-            {/* Add userData.user !== undefined on below line to enable user auth */}
-            {userData.user  ? (
-              <Box>
-                <Button
-                  padding={["0.3rem", "1rem"]}
-                  backgroundColor={theme.colors.accent}
-                  maxW='7rem'
-                  margin='0 1rem'
-                  color='white'
+      <Box width="100%">
+        <header className="header" style={{ backgroundColor: "white" }}>
+          <Flex className="nav" direction={["column","row"]}>
+            <List className="logo" margin={['1rem', '0']} >
+              <ListItem >
+                <Heading
+                  style={{ fontFamily: theme.fonts.body, fontWeight: 400 }}
                 >
-                  {" "}
-                  <Link to="/blogs/new">
-                    <Flex>
-                      <AiOutlineFileAdd />
-                      <Text marginLeft="0.3rem" >New Blog</Text>
-                    </Flex>
+                  <Link to="/">Blog.</Link>
+                </Heading>
+              </ListItem>
+            </List>
+            <ul className="links">
+              <Link to="/blogs">Explore</Link>
+              {/* Add userData.user !== undefined on below line to enable user auth */}
+              {userData.user ? (
+                <Box>
+                  <Button
+                    padding={["0.3rem", "1rem"]}
+                    backgroundColor={theme.colors.accent}
+                    maxW="7rem"
+                    margin="0 1rem"
+                    color="white"
+                  >
+                    {" "}
+                    <Link to="/blogs/new">
+                      <Flex>
+                        <AiOutlineFileAdd />
+                        <Text marginLeft="0.3rem">New Blog</Text>
+                      </Flex>
+                    </Link>
+                  </Button>
+                  <Button onClick={logout}>Log out</Button>
+                </Box>
+              ) : (
+                <>
+                  <Link to="/user/login">
+                    <button className="btn">Login</button>
                   </Link>
-                </Button>
-                <Button onClick={logout}>Log out</Button>
-              </Box>
-            ) : (
-              <>
-                <Link to="/user/login">
-                  <button className="btn">Login</button>
-                </Link>
-                <Link to="/user/register">Register</Link>
-              </>
-            )}
-          </ul>
-        </nav>
-      </header>
+                  <Link to="/user/register">Register</Link>
+                </>
+              )}
+            </ul>
+          </Flex>
+        </header>
       </Box>
     </React.Fragment>
   );

@@ -13,7 +13,9 @@ export default {
     purple: "#592E83",
     accent: "#3b49df",
     accentDark:'#323EBE',
-    background:"#EEF0F1"
+    background:"#EEF0F1",
+    white:"#fff",
+    black:"#000"
   },
   fontWeights: {
     bold: "700",

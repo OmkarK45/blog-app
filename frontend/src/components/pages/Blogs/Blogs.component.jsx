@@ -32,10 +32,11 @@ const Blogs = () => {
         // templateColumns="1fr 70ch 1fr"
         templateColumns={["1fr", "1fr", "1fr", "1fr 60ch 1fr", "1fr 70ch 1fr"]}
         gap={2}
+        backgroundColor={theme.colors.background}
       >
         <Box w="100%" h="10" border='1px solid #eee' className="sidebar" />
         <Box>
-            <Heading fontFamily={theme.fonts.body} marginTop='1rem'>Trending Blogs</Heading>
+            <Heading fontFamily={theme.fonts.body} marginTop='1rem' textAlign={['center', 'left']}>Trending Blogs</Heading>
           <Flex direction="column">
             <Box w="100%" margin="1rem 0">
               {data.blogs ? (

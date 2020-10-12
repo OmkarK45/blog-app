@@ -33,7 +33,7 @@ const BlogCard = (props) => {
           </Box>
           <Flex direction="column" padding="1rem 1.5rem">
             <Heading
-              fontSize="1.8rem"
+              fontSize={['1.5rem', '1.8rem']}
               fontFamily={theme.fonts.heading}
               fontWeight={theme.fontWeights.bold}
             >

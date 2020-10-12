@@ -13,7 +13,7 @@ import {
 import theme from "../../../themes/theme";
 import userContext from "../../../context/userContext";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 
 const NewBlog = () => {
   const [value, setValue] = useState();
@@ -26,44 +26,52 @@ const NewBlog = () => {
   const handleSubmit = (e) => {
     console.log("Current userdata is ", userData);
     e.preventDefault();
-    // console.log(value);
-    const blogData = {
-      title: blogTitle,
-      content: value,
-      authorID: userData.user.username,
-      date: Date.now(),
-      bannerURL: bannerURL,
-      
-    };
-    console.log("Complete Blog is ", blogData);
-    // make a post request to /blogs/new
-    const options = {
-      headers: {
-        "x-auth-token": userData.token,
-      },
-    };
-
-    if (userData.user.id) {
-      axios
-        .post("/blogs/new", blogData, options)
-        .then(() => history.push("/blogs"))
-        .catch((err) => {
-          toast({
-            title: "Error!",
-            description:
-              "Error occured while publishing your blog. Please try later.",
-            isClosable: true,
-            status: "error",
-          });
-          history.push("/blogs");
-        });
-    } else {
+    const { username, email, user, token } = userData;
+    if (!username || !email || !user || !token) {
       toast({
-        title: "Error !",
-        status: "error",
+        title: "Error!",
         description: "You need to be logged in to do that.",
+        isClosable: true,
+        status: "error",
       });
-      history.push("/user/login");
+    } else {
+      const blogData = {
+        title: blogTitle,
+        content: value,
+        authorID: userData.user.username,
+        date: Date.now(),
+        bannerURL: bannerURL,
+      };
+
+      console.log("Complete Blog is ", blogData);
+      // make a post request to /blogs/new
+      const options = {
+        headers: {
+          "x-auth-token": userData.token,
+        },
+      };
+      if (userData.user.id) {
+        axios
+          .post("/blogs/new", blogData, options)
+          .then(() => history.push("/blogs"))
+          .catch((err) => {
+            toast({
+              title: "Error!",
+              description:
+                "Error occured while publishing your blog. Please try later.",
+              isClosable: true,
+              status: "error",
+            });
+            history.push("/blogs");
+          });
+      } else {
+        toast({
+          title: "Error !",
+          status: "error",
+          description: "You need to be logged in to do that.",
+        });
+        history.push("/user/login");
+      }
     }
   };
   const handleBannerURL = (e) => {

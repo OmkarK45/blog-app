@@ -15,11 +15,12 @@ const Home = (props) => {
     <React.Fragment>
       <Box
         className="banner"
-        minH="100vh"
+        minH="91vh"
         display="flex"
+        backgroundColor={theme.colors.white}
         justifyContent="center"
       >
-        <Flex marginTop="15rem">
+        <Flex marginTop={['4rem','10rem']} justifyContent={['center', '']}>
           <Box padding="0 1rem" margin="0 auto">
             <Text
               style={{
