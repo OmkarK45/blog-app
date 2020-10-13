@@ -4,7 +4,7 @@ import { Heading, Box, Flex, Grid, Image } from "@chakra-ui/core";
 import ReactMarkdown from "react-markdown";
 import theme from "../../../themes/theme";
 import Skeleton from "react-loading-skeleton";
-
+import ChakraUIRenderer, { defaults } from "./BlogRender";
 import "./Blog.styles.scss";
 const Blog = ({
   location: {
@@ -17,17 +17,17 @@ const Blog = ({
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
-  // const customMDTheme = {
-  //   heading: (props) => {
-  //     const { children } = props;
-  //     return (
-  //       <Heading as="h2" fontSize={"1rem"}>
-  //         {children}
-  //       </Heading>
-  //     );
-  //   },
-  //   ...defaults,
-  // };
+  const customMDTheme = {
+    heading: (props) => {
+      const { children } = props;
+      return (
+        <Heading as="h2" fontSize={"1rem"}>
+          {children}
+        </Heading>
+      );
+    },
+    ...defaults,
+  };
 
   return (
     <React.Fragment>
@@ -76,7 +76,7 @@ const Blog = ({
               {/* User data here */}
               <Flex></Flex>
               <ReactMarkdown
-                // renderers={ChakraUIRenderer(customMDTheme)}
+                renderers={ChakraUIRenderer(customMDTheme)}
                 source={data.content}
                 escapeHtml={false}
               />
