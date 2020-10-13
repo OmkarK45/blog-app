@@ -1,15 +1,7 @@
 import React, { useContext } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
-import {
-  Box,
-  Flex,
-  Text,
-  Heading,
-  Button,
-  Input,
-  useToast,
-} from "@chakra-ui/core";
+import { Box, Flex, Text, Heading, Button, Input } from "@chakra-ui/core";
 import theme from "../../../themes/theme";
 import userContext from "../../../context/userContext";
 import axios from "axios";
@@ -20,7 +12,6 @@ const NewBlog = () => {
   const [bannerURL, setBannerURL] = useState("");
   const [blogTitle, setBlogTitle] = useState("");
   const { userData } = useContext(userContext);
-  const toast = useToast();
   const history = useHistory();
 
   const handleSubmit = (e) => {
@@ -28,12 +19,7 @@ const NewBlog = () => {
     e.preventDefault();
     const { user, token } = userData;
     if (!user.username || !user.id || !user.email || !token) {
-      toast({
-        title: "Error!",
-        description: "You need to be logged in to do that.",
-        isClosable: true,
-        status: "error",
-      });
+      console.log("NO ACCESS");
     } else {
       const blogData = {
         title: blogTitle,
@@ -55,21 +41,11 @@ const NewBlog = () => {
           .post("/blogs/new", blogData, options)
           .then(() => history.push("/blogs"))
           .catch((err) => {
-            toast({
-              title: "Error!",
-              description:
-                "Error occured while publishing your blog. Please try later.",
-              isClosable: true,
-              status: "error",
-            });
+            // toast here
             history.push("/blogs");
           });
       } else {
-        toast({
-          title: "Error !",
-          status: "error",
-          description: "You need to be logged in to do that.",
-        });
+        // toast here
         history.push("/user/login");
       }
     }

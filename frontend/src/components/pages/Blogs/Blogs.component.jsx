@@ -1,17 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import useAxios from "axios-hooks";
-import {
-  List,
-  ListItem,
-  ListIcon,
-  Heading,
-  Button,
-  Flex,
-  Grid,
-  Box,
-  Text,
-} from "@chakra-ui/core";
+import { Heading, Flex, Grid, Box } from "@chakra-ui/core";
 import BlogCard from "./../BlogCard/BlogCard.component";
 import theme from "../../../themes/theme";
 import "./Blogs.styles.scss";
@@ -37,7 +26,7 @@ const Blogs = () => {
         <Box
           w="100%"
           display={["none", "none", "none", "block"]}
-          border="1px solid #000"
+          // border="1px solid #000"
           className="sidebar"
         />
         <Box>
@@ -66,7 +55,7 @@ const Blogs = () => {
         <Box
           w="100%"
           display={["none", "none", "none", "block"]}
-          border="1px solid #000"
+          // border="1px solid #000"
           className="tag-list"
         />
       </Grid>

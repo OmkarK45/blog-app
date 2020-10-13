@@ -4,16 +4,20 @@ import theme from "../../../themes/theme";
 import { Link, Redirect } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import "./BlogCard.styles.scss";
+import Skeleton from "react-loading-skeleton";
 
 const BlogCard = (props) => {
-  const fallbackImageURL =
-    "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1007&q=80";
-
+  const [image, setImageURL] = useState("");
+  const fallbackImageURL = "http://unsplash.it/600/600";
+  const handleImageLoad = () => {
+    setImageURL("loaded");
+  };
+  
   return (
     <Link
       to={{
         pathname: `/blogs/${props.data.authorID}/${props.data._id}`,
-        state: { ...{props} },
+        state: { ...{ props } },
       }}
     >
       <Box
@@ -29,6 +33,7 @@ const BlogCard = (props) => {
         <Box>
           <Flex direction="column">
             <Box overflow="hidden">
+              {!image && <Skeleton height="290px" width="100%" />}
               <Image
                 src={
                   props.data.bannerURL ? props.data.bannerURL : fallbackImageURL
@@ -37,6 +42,7 @@ const BlogCard = (props) => {
                 width="100%"
                 objectFit="cover"
                 className="blog-banner"
+                onLoad={handleImageLoad}
               />
             </Box>
             <Flex direction="column" padding="1rem 1.5rem">
@@ -53,16 +59,15 @@ const BlogCard = (props) => {
                   <Box borderRadius="50%">
                     <HiOutlineUserCircle size="32px" />
                   </Box>
-                  <Flex direction="column">
+                  <Flex>
                     <Text
                       color="#4d5760"
                       fontFamily={theme.fonts.heading}
                       marginLeft="0.7rem"
                     >
-                      {props.data.authorID}
+                      {props.data.authorID} &nbsp; • &nbsp; 
                     </Text>
                     {/* Future Update : Date in MM/DD */}
-                    <Text>{props.data.date}</Text>
                   </Flex>
                 </Flex>
               </Box>

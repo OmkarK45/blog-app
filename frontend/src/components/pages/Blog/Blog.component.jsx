@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Text, Heading, Box, Flex, Grid, Image } from "@chakra-ui/core";
-import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
+import React, { useState } from "react";
+import { Heading, Box, Flex, Grid, Image } from "@chakra-ui/core";
+// import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import theme from "../../../themes/theme";
 import Skeleton from "react-loading-skeleton";
@@ -17,17 +17,17 @@ const Blog = ({
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
-  const customMDTheme = {
-    heading: (props) => {
-      const { children } = props;
-      return (
-        <Heading as="h2" fontSize={"1rem"}>
-          {children}
-        </Heading>
-      );
-    },
-    ...defaults,
-  };
+  // const customMDTheme = {
+  //   heading: (props) => {
+  //     const { children } = props;
+  //     return (
+  //       <Heading as="h2" fontSize={"1rem"}>
+  //         {children}
+  //       </Heading>
+  //     );
+  //   },
+  //   ...defaults,
+  // };
 
   return (
     <React.Fragment>
@@ -63,7 +63,10 @@ const Blog = ({
                 ""
               )}
             </Box>
-            <Box padding={["0 0.3rem", "0 .7rem", "0 3rem"]}>
+            <Box
+              padding={["0 0.3rem", "0 .7rem", "0 3rem"]}
+              className="md-content"
+            >
               <Heading
                 fontSize={["2.25rem", "3rem"]}
                 marginTop={["2rem", "0.7rem", "0.3rem"]}
@@ -73,7 +76,7 @@ const Blog = ({
               {/* User data here */}
               <Flex></Flex>
               <ReactMarkdown
-                renderers={ChakraUIRenderer(customMDTheme)}
+                // renderers={ChakraUIRenderer(customMDTheme)}
                 source={data.content}
                 escapeHtml={false}
               />

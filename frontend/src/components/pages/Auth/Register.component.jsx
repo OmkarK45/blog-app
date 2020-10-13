@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import userContext from "../../../context/userContext";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   FormControl,
   FormLabel,
   Flex,
   Box,
+  Text,
   Input,
   useToast,
   Heading,
@@ -20,7 +21,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
   const { setUserData } = useContext(userContext);
-  const toast = useToast()
+  const toast = useToast();
 
   const history = useHistory();
   const handleEmail = (e) => {
@@ -39,38 +40,40 @@ const Register = () => {
     e.preventDefault();
     const registerCreds = { email, password, username, avatar };
     const loginCreds = { email, password };
-    await axios.post("/user/register", registerCreds)
-    .then(res=>{
-      console.log(res)
-      history.push("/");
-    })
-    .catch(err=>{
-      toast({title:'Error!', description:err.response.data.error, status:"error"})
-      history.push('/register')
-    })
+    await axios
+      .post("/user/register", registerCreds)
+      .then((res) => {
+        console.log(res);
+        history.push("/");
+      })
+      .catch((err) => {
+        toast({
+          title: "Error!",
+          description: err.response.data.error,
+          status: "error",
+        });
+        history.push("/register");
+      });
     axios
       .post("/user/login", loginCreds)
-      .then((res) =>{
+      .then((res) => {
         setUserData({
           token: res.data.token,
           user: res.data.user,
-        })
-        if(res.data.error){
-          history.push("/user/register")
-        }else{
-          history.push("/")
+        });
+        if (res.data.error) {
+          history.push("/user/register");
+        } else {
+          history.push("/");
         }
-      }
-      )
+      })
       .catch((err) => {
         toast({
-          title:"Error!",
-          description:err.response.data.error
-        })
-        history.push("/user/register")
+          title: "Error!",
+          description: err.response.data.error,
+        });
+        history.push("/user/register");
       });
-
-    
   };
 
   return (
@@ -82,6 +85,7 @@ const Register = () => {
           marginTop={["2rem", "2rem", "4rem", "2rem"]}
           padding="2rem"
           borderRadius="15px"
+          backgroundColor="white"
         >
           <Box margin="0 auto">
             <Heading>Register.</Heading>
@@ -92,6 +96,7 @@ const Register = () => {
               <Input
                 type="text"
                 id="username"
+                isRequired={true}
                 name="username"
                 value={username}
                 onChange={handleUsername}
@@ -103,6 +108,7 @@ const Register = () => {
               <Input
                 type="email"
                 id="email"
+                isRequired={true}
                 name="email"
                 value={email}
                 onChange={handleEmail}
@@ -115,6 +121,7 @@ const Register = () => {
                 type="password"
                 id="password"
                 name="password"
+                isRequired={true}
                 value={password}
                 onChange={handlePassword}
               />
@@ -141,6 +148,12 @@ const Register = () => {
               Register
             </Button>
           </form>
+          <Box marginTop="1rem">
+            Already have an account ?
+            <Link to="/user/login">
+              <Text color={theme.colors.accent}>Login Here.</Text>
+            </Link>
+          </Box>
         </Box>
       </Flex>
     </React.Fragment>
