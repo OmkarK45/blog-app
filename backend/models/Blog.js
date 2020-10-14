@@ -27,7 +27,6 @@ const blogSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: new Date(),
   },
   avatar: {
     type: String,

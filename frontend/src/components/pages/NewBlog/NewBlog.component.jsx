@@ -25,7 +25,7 @@ const NewBlog = () => {
         title: blogTitle,
         content: value,
         authorID: userData.user.username,
-        date: Date.now(),
+        date: new Date(),
         bannerURL: bannerURL,
         avatar: userData.user.avatar,
       };

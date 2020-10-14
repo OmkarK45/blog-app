@@ -1,13 +1,15 @@
-import React, { useState, useContext } from "react";
-import { Heading, Box, Flex, Grid, Image } from "@chakra-ui/core";
+import React, { useState, useContext,useEffect } from "react";
+import { Heading, Box, Flex, Grid, Image, Text } from "@chakra-ui/core";
 // import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import theme from "../../../themes/theme";
 import Skeleton from "react-loading-skeleton";
 import ChakraUIRenderer, { defaults } from "./BlogRender";
 import userContext from "../../../context/userContext";
-
 import "./Blog.styles.scss";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
+
 const Blog = ({
   location: {
     state: {
@@ -17,6 +19,17 @@ const Blog = ({
 }) => {
   const { userData } = useContext(userContext);
   const fallbackImageURL = "http://unsplash.it/600/600";
+  
+  const [dateVar, setDateVar] = useState("");
+
+  useEffect(() => {
+    
+    var parsedDate = parseISO(data.date);
+    var result = format(parsedDate, "MMM yyyy");
+    console.log(result);
+    setDateVar(result);
+  },[]);
+
 
   const [image, setImageURL] = useState("");
   const handleImageLoad = () => {
@@ -51,7 +64,7 @@ const Blog = ({
           >
             <Box overflow="hidden">
               {/* {!image && <Skeleton height="280px" width="100%" />} */}
-              {data.bannerURL === "" ? (
+              {data.bannerURL !== "" ? (
                 <Image
                   src={data.bannerURL}
                   // onLoad={handleImageLoad}
@@ -61,14 +74,7 @@ const Blog = ({
                   borderRadius="5px"
                 ></Image>
               ) : (
-                <Image
-                  src='https://unsplash.it/300/300'
-                  w="100%"
-                  alt='image here'
-                  maxH="280px"
-                  objectFit="cover"
-                  borderRadius="5px"
-                />
+                ""
               )}
             </Box>
 
@@ -87,8 +93,19 @@ const Blog = ({
                 {data.title || <Skeleton />}
               </Heading>
               {/* User data here */}
-              <Flex>
-                <Image src={data.avatar ? data.avatar : ""} />
+              <Flex padding="1rem 0" alignItems="center">
+                <Box
+                  width="40px"
+                  height="40px"
+                  borderRadius="50%"
+                  overflow="hidden"
+                >
+                  <Image src={data.avatar ? data.avatar : ""} />
+                </Box>
+                <Box marginLeft="1rem">
+                  <Text fontFamily={theme.fonts.body}>{data.authorID} • {dateVar} </Text>
+                  
+                </Box>
               </Flex>
               <Box padding={[""]}>
                 <ReactMarkdown
