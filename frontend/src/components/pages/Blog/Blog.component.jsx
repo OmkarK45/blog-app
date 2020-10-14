@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Heading, Box, Flex, Grid, Image } from "@chakra-ui/core";
 // import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
 import theme from "../../../themes/theme";
 import Skeleton from "react-loading-skeleton";
 import ChakraUIRenderer, { defaults } from "./BlogRender";
+import userContext from "../../../context/userContext";
+
 import "./Blog.styles.scss";
 const Blog = ({
   location: {
@@ -13,6 +15,7 @@ const Blog = ({
     },
   },
 }) => {
+  const { userData } = useContext(userContext);
   const [image, setImageURL] = useState("");
   const handleImageLoad = () => {
     setImageURL("loaded");
@@ -31,14 +34,10 @@ const Blog = ({
 
   return (
     <React.Fragment>
+      {JSON.stringify(userData)}
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
-          <Box
-            w="100%"
-            h="10"
-            display={["none", "none", "none", "block"]}
-            border="1px solid black"
-          />
+          <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
           {/* Main Blog Column */}
           <Box
             w="100%"
@@ -75,10 +74,12 @@ const Blog = ({
                 padding={[""]}
                 fontFamily={theme.fonts.body}
               >
-                {data.title}
+                {data.title || <Skeleton />}
               </Heading>
               {/* User data here */}
-              <Flex></Flex>
+              <Flex>
+                <Image src={data.avatar} />
+              </Flex>
               <Box padding={[""]}>
                 <ReactMarkdown
                   renderers={ChakraUIRenderer(customMDTheme)}
@@ -88,12 +89,7 @@ const Blog = ({
               </Box>
             </Box>
           </Box>
-          <Box
-            w="100%"
-            h="10"
-            display={["none", "none", "none", "block"]}
-            border="1px solid black"
-          />
+          <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
         </Grid>
       </Box>
     </React.Fragment>

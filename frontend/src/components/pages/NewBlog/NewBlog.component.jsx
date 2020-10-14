@@ -27,6 +27,7 @@ const NewBlog = () => {
         authorID: userData.user.username,
         date: Date.now(),
         bannerURL: bannerURL,
+        avatar:userData.user.avatar
       };
 
       console.log("Complete Blog is ", blogData);
