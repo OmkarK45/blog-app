@@ -27,7 +27,7 @@ const NewBlog = () => {
         authorID: userData.user.username,
         date: Date.now(),
         bannerURL: bannerURL,
-        avatar:userData.user.avatar
+        avatar: userData.user.avatar,
       };
 
       console.log("Complete Blog is ", blogData);
@@ -53,6 +53,7 @@ const NewBlog = () => {
   };
   const handleBannerURL = (e) => {
     setBannerURL(e.target.value);
+    // Add validation if its a URL or not
   };
   const handleBlogTitle = (e) => {
     setBlogTitle(e.target.value);
@@ -74,6 +75,7 @@ const NewBlog = () => {
             <Input
               width="50%"
               value={bannerURL}
+              type="url"
               onChange={handleBannerURL}
               name="bannerURL"
               placeholder="Add Banner Image..."

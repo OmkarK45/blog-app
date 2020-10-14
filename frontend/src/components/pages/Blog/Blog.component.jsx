@@ -16,10 +16,13 @@ const Blog = ({
   },
 }) => {
   const { userData } = useContext(userContext);
+  const fallbackImageURL = "http://unsplash.it/600/600";
+
   const [image, setImageURL] = useState("");
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
+
   const customMDTheme = {
     heading: (props) => {
       const { children } = props;
@@ -34,7 +37,6 @@ const Blog = ({
 
   return (
     <React.Fragment>
-      {JSON.stringify(userData)}
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
@@ -48,20 +50,28 @@ const Blog = ({
             borderRadius="10px"
           >
             <Box overflow="hidden">
-              {!image && <Skeleton height="280px" width="100%" />}
-              {data.bannerURL ? (
+              {/* {!image && <Skeleton height="280px" width="100%" />} */}
+              {data.bannerURL === "" ? (
                 <Image
                   src={data.bannerURL}
-                  onLoad={handleImageLoad}
+                  // onLoad={handleImageLoad}
                   w="100%"
                   maxH="280px"
                   objectFit="cover"
                   borderRadius="5px"
-                />
+                ></Image>
               ) : (
-                ""
+                <Image
+                  src='https://unsplash.it/300/300'
+                  w="100%"
+                  alt='image here'
+                  maxH="280px"
+                  objectFit="cover"
+                  borderRadius="5px"
+                />
               )}
             </Box>
+
             <Box
               padding={["0 0.3rem", "0 .7rem", "0 3rem"]}
               className="md-content"
@@ -78,7 +88,7 @@ const Blog = ({
               </Heading>
               {/* User data here */}
               <Flex>
-                <Image src={data.avatar} />
+                <Image src={data.avatar ? data.avatar : ""} />
               </Flex>
               <Box padding={[""]}>
                 <ReactMarkdown
