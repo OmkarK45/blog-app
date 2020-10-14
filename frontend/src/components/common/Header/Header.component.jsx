@@ -1,7 +1,16 @@
 import React, { useContext } from "react";
 import userContext from "../../../context/userContext";
 import "./Header.styles.scss";
-import { Heading, Flex, Box, Text, Button, useToast, List, ListItem } from "@chakra-ui/core";
+import {
+  Heading,
+  Flex,
+  Box,
+  Text,
+  Button,
+  useToast,
+  List,
+  ListItem,
+} from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import theme from "../../../themes/theme";
 import { AiOutlineFileAdd } from "react-icons/ai";
@@ -28,9 +37,9 @@ const Header = (props) => {
     <React.Fragment>
       <Box width="100%">
         <header className="header" style={{ backgroundColor: "white" }}>
-          <Flex className="nav" direction={["column","row"]}>
-            <List className="logo" margin={['1rem', '0']} >
-              <ListItem >
+          <Flex className="nav" direction={["column", "row"]}>
+            <List className="logo" margin={["1rem", "0"]}>
+              <ListItem>
                 <Heading
                   style={{ fontFamily: theme.fonts.body, fontWeight: 400 }}
                 >
@@ -38,16 +47,20 @@ const Header = (props) => {
                 </Heading>
               </ListItem>
             </List>
-            <List margin={['0']} className="links" >
-              <Link to="/blogs">Explore</Link>
+            <List margin={["0"]} className="links">
+              <Link to="/blogs">
+                <Text fontWeight="700" fontFamily={theme.fonts.body}>
+                  Explore
+                </Text>
+              </Link>
               {/* Add userData.user !== undefined on below line to enable user auth */}
               {userData.user ? (
-                <Box margin={['0', '0 auto']}>
+                <Box margin={["0", "0 auto"]}>
                   <Button
                     padding={["0.2rem", "1rem"]}
                     backgroundColor={theme.colors.accent}
                     maxW="7rem"
-                    margin={['0 0.2rem', '0 1rem']}
+                    margin={["0 0.2rem", "0 1rem"]}
                     color="white"
                   >
                     {" "}
@@ -62,10 +75,14 @@ const Header = (props) => {
                 </Box>
               ) : (
                 <>
+                  <Link to="/user/register">
+                    <Text fontWeight="700" fontFamily={theme.fonts.body}>
+                      Register
+                    </Text>
+                  </Link>
                   <Link to="/user/login">
                     <button className="btn">Login</button>
                   </Link>
-                  <Link to="/user/register">Register</Link>
                 </>
               )}
             </List>
