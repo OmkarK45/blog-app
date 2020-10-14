@@ -21,7 +21,7 @@ const Blog = ({
     heading: (props) => {
       const { children } = props;
       return (
-        <Heading as="h2" fontSize={"1rem"}>
+        <Heading as="h3" fontFamily={theme.fonts.body} fontSize="1.5rem">
           {children}
         </Heading>
       );
@@ -31,7 +31,7 @@ const Blog = ({
 
   return (
     <React.Fragment>
-      <Box maxW={["100%", "95%"]} margin={["0 auto"]}>
+      <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box
             w="100%"
@@ -68,18 +68,24 @@ const Blog = ({
               className="md-content"
             >
               <Heading
-                fontSize={["2.25rem", "3rem"]}
-                marginTop={["2rem", "0.7rem", "0.3rem"]}
+                // fontSize={["1.875rem", "2.25rem", "3rem"]}
+                fontSize={["2.35rem", "3rem"]}
+                lineHeight={["1.25"]}
+                marginTop={["2rem", "1.7rem", "1.4rem", "1.6rem"]}
+                padding={[""]}
+                fontFamily={theme.fonts.body}
               >
                 {data.title}
               </Heading>
               {/* User data here */}
               <Flex></Flex>
-              <ReactMarkdown
-                renderers={ChakraUIRenderer(customMDTheme)}
-                source={data.content}
-                escapeHtml={false}
-              />
+              <Box padding={[""]}>
+                <ReactMarkdown
+                  renderers={ChakraUIRenderer(customMDTheme)}
+                  source={data.content}
+                  escapeHtml={false}
+                />
+              </Box>
             </Box>
           </Box>
           <Box
