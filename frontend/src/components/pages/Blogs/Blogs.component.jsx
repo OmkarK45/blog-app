@@ -26,7 +26,7 @@ const Blogs = () => {
         // templateColumns="1fr 70ch 1fr"
         templateColumns={["1fr", "1fr", "1fr", "1fr 60ch 1fr", "1fr 70ch 1fr"]}
         gap={2}
-        backgroundColor={["white", "white", theme.colors.background]}
+        
       >
         <Box
           w="100%"

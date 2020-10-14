@@ -5,6 +5,8 @@ import { Link, Redirect } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import "./BlogCard.styles.scss";
 import Skeleton from "react-loading-skeleton";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
 
 const BlogCard = (props) => {
   const [image, setImageURL] = useState("");
@@ -12,9 +14,20 @@ const BlogCard = (props) => {
 
   const fallbackImageURL = "http://unsplash.it/600/600";
   let imageExist = true;
+
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
+
+  const [dateVar, setDateVar] = useState("");
+
+  useEffect(() => {
+    console.log(props.data.date);
+    var parsedDate = parseISO(props.data.date);
+    var result = format(parsedDate, "MMM yyyy");
+    console.log(result);
+    setDateVar(result);
+  }, []);
 
   return (
     <Link
@@ -80,7 +93,7 @@ const BlogCard = (props) => {
                       fontFamily={theme.fonts.heading}
                       marginLeft="0.7rem"
                     >
-                      {props.data.authorID} &nbsp; • &nbsp;
+                      {props.data.authorID} &nbsp; • {dateVar}
                     </Text>
                     {/* Future Update : Date in MM/DD */}
                   </Flex>

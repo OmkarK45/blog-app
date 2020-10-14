@@ -1,4 +1,4 @@
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Heading, Box, Flex, Grid, Image, Text } from "@chakra-ui/core";
 // import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
 import ReactMarkdown from "react-markdown";
@@ -19,17 +19,15 @@ const Blog = ({
 }) => {
   const { userData } = useContext(userContext);
   const fallbackImageURL = "http://unsplash.it/600/600";
-  
+
   const [dateVar, setDateVar] = useState("");
 
   useEffect(() => {
-    
     var parsedDate = parseISO(data.date);
     var result = format(parsedDate, "MMM yyyy");
     console.log(result);
     setDateVar(result);
-  },[]);
-
+  }, []);
 
   const [image, setImageURL] = useState("");
   const handleImageLoad = () => {
@@ -103,8 +101,12 @@ const Blog = ({
                   <Image src={data.avatar ? data.avatar : ""} />
                 </Box>
                 <Box marginLeft="1rem">
-                  <Text fontFamily={theme.fonts.body}>{data.authorID} • {dateVar} </Text>
-                  
+                  <Flex fontFamily={theme.fonts.body}>
+                    <Text >
+                      {data.authorID} • {" "}
+                    </Text>
+                    <Text color="#64707D">&nbsp;{dateVar}</Text>
+                  </Flex>
                 </Box>
               </Flex>
               <Box padding={[""]}>
