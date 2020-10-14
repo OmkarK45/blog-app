@@ -29,9 +29,9 @@ const blogSchema = new mongoose.Schema({
     type: String,
     default: new Date(),
   },
-  avatar:{
-    type:String,
-  }
+  avatar: {
+    type: String,
+  },
 });
 
 module.exports = mongoose.model("Blog", blogSchema);
