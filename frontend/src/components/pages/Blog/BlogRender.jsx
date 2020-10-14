@@ -8,27 +8,41 @@ import {
   Checkbox,
   ListItem,
   Heading,
-  Image
+  Image,
 } from "@chakra-ui/core";
 
 function getCoreProps(props) {
-  return props['data-sourcepos'] ? { 'data-sourcepos': props['data-sourcepos'] } : {};
+  return props["data-sourcepos"]
+    ? { "data-sourcepos": props["data-sourcepos"] }
+    : {};
 }
 
 export const defaults = {
-  paragraph: props => {
+  paragraph: (props) => {
     const { children } = props;
-    return <Text mb={2} fontSize='1.25rem'>{children}</Text>;
+    return (
+      <Text mb={2} fontSize="1.25rem">
+        {children}
+      </Text>
+    );
   },
-  emphasis: props => {
+  emphasis: (props) => {
     const { children } = props;
-    return <Text as="em" fontSize='1.25rem'>{children}</Text>;
+    return (
+      <Text as="em" fontSize="1.25rem">
+        {children}
+      </Text>
+    );
   },
-  blockquote: props => {
+  blockquote: (props) => {
     const { children } = props;
-    return <Code p={2} fontSize='1.25rem'>{children}</Code>;
+    return (
+      <Code p={2} fontSize="1.25rem">
+        {children}
+      </Code>
+    );
   },
-  code: props => {
+  code: (props) => {
     const { language, value } = props;
     const className = language && `language-${language}`;
     return (
@@ -39,7 +53,7 @@ export const defaults = {
       </pre>
     );
   },
-  delete: props => {
+  delete: (props) => {
     const { children } = props;
     return <Text as="del">{children}</Text>;
   },
@@ -48,26 +62,32 @@ export const defaults = {
   img: Image,
   linkReference: Link,
   imageReference: Image,
-  text: props => {
+  text: (props) => {
     const { children } = props;
     return <Text as="span">{children}</Text>;
   },
-  list: props => {
+  list: (props) => {
     const { start, ordered, children, depth } = props;
     const attrs = getCoreProps(props);
     if (start !== null && start !== 1 && start !== undefined) {
       attrs.start = start.toString();
     }
-    let styleType = 'disc';
-    if (ordered) styleType = 'decimal';
-    if (depth === 1) styleType = 'circle';
+    let styleType = "disc";
+    if (ordered) styleType = "decimal";
+    if (depth === 1) styleType = "circle";
     return (
-      <List spacing={24} as={ordered ? 'ol' : 'ul'} styleType={styleType} pl={4} {...attrs}>
+      <List
+        spacing={24}
+        as={ordered ? "ol" : "ul"}
+        styleType={styleType}
+        pl={4}
+        {...attrs}
+      >
         {children}
       </List>
     );
   },
-  listItem: props => {
+  listItem: (props) => {
     const { children, checked } = props;
     let checkbox = null;
     if (checked !== null && checked !== undefined) {
@@ -78,25 +98,36 @@ export const defaults = {
       );
     }
     return (
-      <ListItem {...getCoreProps(props)} listStyleType={checked !== null ? 'none' : 'inherit'}>
+      <ListItem
+        {...getCoreProps(props)}
+        listStyleType={checked !== null ? "none" : "inherit"}
+      >
         {checkbox || children}
       </ListItem>
     );
   },
   definition: () => null,
-  heading: props => {
+  heading: (props) => {
     const { level, children } = props;
-    const sizes = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs'];
+    const sizes = ["xl", "lg", "md", "sm", "xs"];
+
     return (
-      <Heading my={4} as={`h${level}`} size={sizes[`${level}`]} {...getCoreProps(props)}>
+      <Heading
+        my={4}
+        fontWeight="400"
+        as={`h${level}`}
+        size={sizes[`${level - 1}`]}
+        fontSize={["1.9rem"]}
+        {...getCoreProps(props)}
+      >
         {children}
       </Heading>
     );
   },
-  inlineCode: props => {
+  inlineCode: (props) => {
     const { children } = props;
     return <Code {...getCoreProps(props)}>{children}</Code>;
-  }
+  },
 };
 
 function ChakraUIRenderer(theme = defaults) {
@@ -116,7 +147,7 @@ function ChakraUIRenderer(theme = defaults) {
     listItem: theme.listItem,
     definition: theme.definition,
     heading: theme.heading,
-    inlineCode: theme.inlineCode
+    inlineCode: theme.inlineCode,
   };
 }
 
