@@ -1,6 +1,6 @@
 import React from "react";
 import useAxios from "axios-hooks";
-import { Heading, Flex, Grid, Box } from "@chakra-ui/core";
+import { Heading, Flex, Grid, Box, Spinner } from "@chakra-ui/core";
 import BlogCard from "./../BlogCard/BlogCard.component";
 import theme from "../../../themes/theme";
 import "./Blogs.styles.scss";
@@ -8,7 +8,12 @@ import "./Blogs.styles.scss";
 const Blogs = () => {
   //   const [blogsList, setBlogsList] = useState();
   const [{ data, loading, error }, refetch] = useAxios("/blogs");
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <Flex justifyContent="center">
+        <Spinner size="xl" />
+      </Flex>
+    );
   if (error) return <p>Error!</p>;
   console.log(data);
 
@@ -21,7 +26,7 @@ const Blogs = () => {
         // templateColumns="1fr 70ch 1fr"
         templateColumns={["1fr", "1fr", "1fr", "1fr 60ch 1fr", "1fr 70ch 1fr"]}
         gap={2}
-        backgroundColor={theme.colors.background}
+        backgroundColor={["white", "white", theme.colors.background]}
       >
         <Box
           w="100%"
