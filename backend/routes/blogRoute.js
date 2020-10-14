@@ -33,6 +33,7 @@ router.post("/new", authentication, async (req, res) => {
     content: req.body.content,
     date: req.body.date,
     bannerURL: req.body.bannerURL,
+    avatar:req.body.avatar
   });
   try {
     const savedBlog = await newBlog.save();
