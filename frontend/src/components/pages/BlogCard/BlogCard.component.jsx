@@ -8,11 +8,15 @@ import Skeleton from "react-loading-skeleton";
 
 const BlogCard = (props) => {
   const [image, setImageURL] = useState("");
+  const [imgSrc, setImgSrc] = useState('')
+  
   const fallbackImageURL = "http://unsplash.it/600/600";
+  let imageExist = true;
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
   
+
   return (
     <Link
       to={{
@@ -33,18 +37,17 @@ const BlogCard = (props) => {
         <Box>
           <Flex direction="column">
             <Box overflow="hidden">
-              {!image && <Skeleton height="290px" width="100%" />}
+              {!image && props.data.bannerURL && <Skeleton height="200px" width="100%" />}
               <Image
-                src={
-                  props.data.bannerURL ? props.data.bannerURL : fallbackImageURL
-                }
-                height="200px"
+                src={props.data.bannerURL ? props.data.bannerURL : ""}
+                height={!image ? "" : "200px"}
                 width="100%"
                 objectFit="cover"
                 className="blog-banner"
                 onLoad={handleImageLoad}
               />
             </Box>
+
             <Flex direction="column" padding="1rem 1.5rem">
               <Heading
                 fontSize={["1.5rem", "1.8rem"]}
@@ -65,7 +68,7 @@ const BlogCard = (props) => {
                       fontFamily={theme.fonts.heading}
                       marginLeft="0.7rem"
                     >
-                      {props.data.authorID} &nbsp; • &nbsp; 
+                      {props.data.authorID} &nbsp; • &nbsp;
                     </Text>
                     {/* Future Update : Date in MM/DD */}
                   </Flex>
