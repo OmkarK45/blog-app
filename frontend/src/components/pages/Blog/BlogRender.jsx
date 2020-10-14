@@ -18,15 +18,15 @@ function getCoreProps(props) {
 export const defaults = {
   paragraph: props => {
     const { children } = props;
-    return <Text mb={2}>{children}</Text>;
+    return <Text mb={2} fontSize='1.25rem'>{children}</Text>;
   },
   emphasis: props => {
     const { children } = props;
-    return <Text as="em">{children}</Text>;
+    return <Text as="em" fontSize='1.25rem'>{children}</Text>;
   },
   blockquote: props => {
     const { children } = props;
-    return <Code p={2}>{children}</Code>;
+    return <Code p={2} fontSize='1.25rem'>{children}</Code>;
   },
   code: props => {
     const { language, value } = props;
@@ -88,7 +88,7 @@ export const defaults = {
     const { level, children } = props;
     const sizes = ['2xl', 'xl', 'lg', 'md', 'sm', 'xs'];
     return (
-      <Heading my={4} as={`h${level}`} size={sizes[`${level - 1}`]} {...getCoreProps(props)}>
+      <Heading my={4} as={`h${level}`} size={sizes[`${level}`]} {...getCoreProps(props)}>
         {children}
       </Heading>
     );
