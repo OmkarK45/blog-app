@@ -68,3 +68,12 @@ Schema Blog Post
 - Render use profile picture on the navbar. 
 - Ability to save writing as a draft.
 - Animations 
+
+TODO -
+- Add share button to share on social media.
+- Remove ugly URL id and replace with clean title - mongoose slug generator.
+- Add delete and edit button 
+- Delete button 
+  Check if authenticated and authorized == If token match == > POST request for deletion
+- Edit button 
+  Check if user is Blog owner == if not ==> res.redirect back --> if yes prepopulate form with edit values --> resubmit with PATCH request in axios. redirect to that blog again.
