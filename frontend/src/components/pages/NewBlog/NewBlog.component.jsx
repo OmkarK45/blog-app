@@ -13,7 +13,7 @@ const NewBlog = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const { userData } = useContext(userContext);
   const history = useHistory();
-
+  
   const handleSubmit = (e) => {
     console.log("Current userdata is ", userData);
     e.preventDefault();
@@ -65,22 +65,23 @@ const NewBlog = () => {
         flexDirection="column"
         maxW={["90%", "1200px"]}
         padding="0.5rem 1rem"
-        border="1px solid #eee"
+        border="2px solid #eee"
         borderRadius="10px"
         margin="1rem auto"
+        backgroundColor="white"
       >
         <form onSubmit={handleSubmit}>
           <Flex margin="1rem 0" alignItems="center">
             <Heading marginRight="2rem">New Blog</Heading>
-            <Input
-              width="50%"
-              value={bannerURL}
-              type="url"
-              onChange={handleBannerURL}
-              name="bannerURL"
-              placeholder="Add Banner Image..."
-            />
           </Flex>
+          <Input
+            width="50%"
+            value={bannerURL}
+            type="url"
+            onChange={handleBannerURL}
+            name="bannerURL"
+            placeholder="Add Banner Image..."
+          />
           <Input
             margin="1rem 0"
             id="title"

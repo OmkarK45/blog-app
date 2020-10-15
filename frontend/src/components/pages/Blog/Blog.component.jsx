@@ -1,6 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Heading, Box, Flex, Grid, Image, Text } from "@chakra-ui/core";
-// import ChakraUIRenderer, { defaults } from "chakra-ui-markdown-renderer";
+import {
+  Heading,
+  Box,
+  Flex,
+  Grid,
+  Image,
+  Text,
+  Spinner,
+  useToast,
+} from "@chakra-ui/core";
 import ReactMarkdown from "react-markdown";
 import theme from "../../../themes/theme";
 import Skeleton from "react-loading-skeleton";
@@ -9,34 +17,40 @@ import userContext from "../../../context/userContext";
 import "./Blog.styles.scss";
 import { parseISO } from "date-fns";
 import format from "date-fns/format";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Blog = ({
-  location: {
-    state: {
-      props: { data },
-    },
-  },
-}) => {
+const Blog = (props) => {
+  const history = useHistory();
+  const toast = useToast();
+  const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
   const { userData } = useContext(userContext);
-  const fallbackImageURL = "http://unsplash.it/600/600";
-
-  const [dateVar, setDateVar] = useState("");
-
-  useEffect(() => {
-    var parsedDate = parseISO(data.date);
-    var result = format(parsedDate, "MMM yyyy");
-    console.log(result);
-    setDateVar(result);
-  }, []);
-
+  const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
+  const [dateVar, setDateVar] = useState("");
+  useEffect(() => {
+    axios
+      .get(reqURL)
+      .then((res) => {
+        setBlog(res.data);
+      })
+      .catch((err) => {
+        toast({
+          title: "Some error occured.",
+          description: "Please try reloading again.",
+          isClosable: true,
+        });
+        history.push(reqURL);
+      });
+  }, []);
+  
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
 
   const customMDTheme = {
-    heading: (props) => {
-      const { children } = props;
+    heading: (property) => {
+      const { children } = property;
       return (
         <Heading as="h3" fontFamily={theme.fonts.body} fontSize="1.5rem">
           {children}
@@ -51,7 +65,6 @@ const Blog = ({
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
-          {/* Main Blog Column */}
           <Box
             w="100%"
             margin={["1.4rem 0"]}
@@ -61,11 +74,10 @@ const Blog = ({
             borderRadius="10px"
           >
             <Box overflow="hidden">
-              {/* {!image && <Skeleton height="280px" width="100%" />} */}
-              {data.bannerURL !== "" ? (
+              {blog.bannerURL !== "" ? (
                 <Image
-                  src={data.bannerURL}
-                  // onLoad={handleImageLoad}
+                  src={blog.bannerURL}
+                  onLoad={handleImageLoad}
                   w="100%"
                   maxH="280px"
                   objectFit="cover"
@@ -81,16 +93,14 @@ const Blog = ({
               className="md-content"
             >
               <Heading
-                // fontSize={["1.875rem", "2.25rem", "3rem"]}
                 fontSize={["2.35rem", "3rem"]}
                 lineHeight={["1.25"]}
                 marginTop={["2rem", "1.7rem", "1.4rem", "1.6rem"]}
                 padding={[""]}
                 fontFamily={theme.fonts.body}
               >
-                {data.title || <Skeleton />}
+                {blog.title || <Skeleton />}
               </Heading>
-              {/* User data here */}
               <Flex padding="1rem 0" alignItems="center">
                 <Box
                   width="40px"
@@ -98,13 +108,11 @@ const Blog = ({
                   borderRadius="50%"
                   overflow="hidden"
                 >
-                  <Image src={data.avatar ? data.avatar : ""} />
+                  <Image src={blog.avatar ? blog.avatar : ""} />
                 </Box>
                 <Box marginLeft="1rem">
                   <Flex fontFamily={theme.fonts.body}>
-                    <Text >
-                      {data.authorID} • {" "}
-                    </Text>
+                    <Text>{blog.authorID} • </Text>
                     <Text color="#64707D">&nbsp;{dateVar}</Text>
                   </Flex>
                 </Box>
@@ -112,7 +120,7 @@ const Blog = ({
               <Box padding={[""]}>
                 <ReactMarkdown
                   renderers={ChakraUIRenderer(customMDTheme)}
-                  source={data.content}
+                  source={blog.content}
                   escapeHtml={false}
                 />
               </Box>

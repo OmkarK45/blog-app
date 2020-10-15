@@ -5,7 +5,7 @@ import { Heading, Text } from "@chakra-ui/core";
 import "./Home.styles.scss";
 import theme from "../../../themes/theme";
 import { Link } from "react-router-dom";
-import home from "../../../assets/Images/home.svg";
+import home from "../../../assets/Images/bg.jpg";
 import userContext from "../../../context/userContext";
 
 const Home = (props) => {
@@ -20,7 +20,7 @@ const Home = (props) => {
         backgroundColor={theme.colors.white}
         justifyContent="center"
       >
-        <Flex marginTop={['4rem','10rem']} justifyContent={['center', '']}>
+        <Flex marginTop={["4rem", "10rem"]} justifyContent={["center", ""]}>
           <Box padding="0 1rem" margin="0 auto">
             <Text
               style={{

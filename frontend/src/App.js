@@ -50,7 +50,11 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/blogs" exact component={Blogs} />
-            <Route path="/blogs/:username/:blogID" component={Blog}></Route>
+            <Route
+              exact
+              path="/blogs/:username/:blogID"
+              render={(props) => <Blog {...props} />}
+            ></Route>
             <Route path="/blogs/new" exact component={NewBlog} />
             <Route path="/user/login" exact component={Login} />
             <Route path="/user/register" exact component={Register} />

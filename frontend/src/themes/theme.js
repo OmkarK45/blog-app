@@ -6,14 +6,14 @@ export default {
     mono: "Menlo, monospace",
   },
   colors: {
-    primary: "#4F9D69",
-    danger: "#DD0426",
-    info: "#9191E9",
+    primary: "#27ae60",
+    danger: "#c0392b",
+    info: "#8e44ad",
     dark: "#230C33",
     purple: "#592E83",
     accent: "#3b49df",
     accentDark:'#323EBE',
-    background:"#EEF0F1",
+    background:"#fafafa",
     white:"#fff",
     black:"#000"
   },

@@ -58,16 +58,18 @@ const Header = (props) => {
                 <Box margin={["0", "0 auto"]}>
                   <Button
                     padding={["0.2rem", "1rem"]}
-                    backgroundColor={theme.colors.accent}
+                    backgroundColor="#f1c40f"
+                    color="black"
                     maxW="7rem"
                     margin={["0 0.2rem", "0 1rem"]}
-                    color="white"
                   >
                     {" "}
                     <Link to="/blogs/new">
                       <Flex>
                         <AiOutlineFileAdd />
-                        <Text marginLeft="0.3rem">New Blog</Text>
+                        <Text marginLeft="0.3rem"  fontFamily={theme.fonts.body}>
+                          New Blog
+                        </Text>
                       </Flex>
                     </Link>
                   </Button>
@@ -81,7 +83,13 @@ const Header = (props) => {
                     </Text>
                   </Link>
                   <Link to="/user/login">
-                    <button className="btn">Login</button>
+                    <Button
+                      color="white"
+                      backgroundColor={theme.colors.primary}
+                      _hover={{ color: "black" }}
+                    >
+                      Login
+                    </Button>
                   </Link>
                 </>
               )}

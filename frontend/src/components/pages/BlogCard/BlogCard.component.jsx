@@ -24,7 +24,7 @@ const BlogCard = (props) => {
   useEffect(() => {
     console.log(props.data.date);
     var parsedDate = parseISO(props.data.date);
-    var result = format(parsedDate, "MMM yyyy");
+    var result = format(parsedDate, "MMM d");
     console.log(result);
     setDateVar(result);
   }, []);
