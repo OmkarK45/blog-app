@@ -29,7 +29,7 @@ const Blog = (props) => {
   const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
 
   const { userData } = useContext(userContext);
-  const user = props.location.state.user.user;
+
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
   const [dateVar, setDateVar] = useState("");
@@ -62,10 +62,6 @@ const Blog = (props) => {
     checkLoggedIn();
   }, []);
   console.log("author of this blog is : ", blog.authorID);
-  // console.log(
-  //   "User Context of this blog is ",
-  //   props.location.state.user.user.id
-  // );
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
@@ -81,6 +77,7 @@ const Blog = (props) => {
     },
     ...defaults,
   };
+  console.log(status);
 
   return (
     <React.Fragment>
@@ -142,15 +139,24 @@ const Blog = (props) => {
                       <Text>{blog.author} • </Text>
                       <Text color="#64707D">&nbsp;{dateVar}</Text>
                     </Box>
-                    {status && blog.authorID === user.id ? (
-                      <Box>
-                        <Button backgroundColor={theme.colors.danger}>
-                          Delete
-                        </Button>
-                      </Box>
+                    {status
+                      ? blog.authorID === props.location.state.user.user.id
+                        ? "You are owner"
+                        : "you are not owner"
+                      : "guest user"}
+                    {/* {user ? (
+                      status && blog.authorID === user.id ? (
+                        <Box>
+                          <Button backgroundColor={theme.colors.danger}>
+                            Delete
+                          </Button>
+                        </Box>
+                      ) : (
+                        "Not logged in to delete"
+                      )
                     ) : (
-                      "Not logged in to delete"
-                    )}
+                      ""
+                    )} */}
                   </Flex>
                 </Box>
               </Flex>
