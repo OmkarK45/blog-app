@@ -16,14 +16,10 @@ import Skeleton from "react-loading-skeleton";
 import ChakraUIRenderer, { defaults } from "./BlogRender";
 import userContext from "../../../context/userContext";
 import "./Blog.styles.scss";
-import { parseISO } from "date-fns";
-import format from "date-fns/format";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 
 const Blog = (props) => {
-  console.log("Props passed via link to blog are", props);
   const history = useHistory();
   const toast = useToast();
   const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
@@ -33,17 +29,8 @@ const Blog = (props) => {
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
   const [dateVar, setDateVar] = useState("");
-  const [status, setStatus] = useState(false);
 
-  const checkLoggedIn = () => {
-    if (props.location.state.user.token === undefined) {
-      console.log("No logged in detected.");
-      setStatus(false);
-    } else {
-      console.log("yes the user is logged in ");
-      setStatus(true);
-    }
-  };
+  
 
   useEffect(() => {
     axios
@@ -59,9 +46,7 @@ const Blog = (props) => {
         });
         history.push(reqURL);
       });
-    checkLoggedIn();
   }, []);
-  console.log("author of this blog is : ", blog.authorID);
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
@@ -77,7 +62,6 @@ const Blog = (props) => {
     },
     ...defaults,
   };
-  console.log(status);
 
   return (
     <React.Fragment>
@@ -139,24 +123,7 @@ const Blog = (props) => {
                       <Text>{blog.author} • </Text>
                       <Text color="#64707D">&nbsp;{dateVar}</Text>
                     </Box>
-                    {status
-                      ? blog.authorID === props.location.state.user.user.id
-                        ? "You are owner"
-                        : "you are not owner"
-                      : "guest user"}
-                    {/* {user ? (
-                      status && blog.authorID === user.id ? (
-                        <Box>
-                          <Button backgroundColor={theme.colors.danger}>
-                            Delete
-                          </Button>
-                        </Box>
-                      ) : (
-                        "Not logged in to delete"
-                      )
-                    ) : (
-                      ""
-                    )} */}
+                    
                   </Flex>
                 </Box>
               </Flex>

@@ -15,7 +15,6 @@ const Blogs = () => {
       </Flex>
     );
   if (error) return <p>Error!</p>;
-  console.log(data);
 
   return (
     <div>

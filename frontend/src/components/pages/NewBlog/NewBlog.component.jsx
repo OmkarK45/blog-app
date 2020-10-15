@@ -45,7 +45,6 @@ const NewBlog = () => {
         avatar: userData.user.avatar,
       };
 
-      console.log("Complete Blog is ", blogData);
       const options = {
         headers: {
           "x-auth-token": userData.token,
