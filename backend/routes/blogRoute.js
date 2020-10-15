@@ -29,11 +29,12 @@ router.post("/new", authentication, async (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
     subtitle: req.body.subtitle,
-    authorID: req.body.authorID,
+    author: req.body.author,
     content: req.body.content,
     date: req.body.date,
     bannerURL: req.body.bannerURL,
-    avatar:req.body.avatar
+    avatar: req.body.avatar,
+    authorID: req.body.authorID,
   });
   try {
     const savedBlog = await newBlog.save();

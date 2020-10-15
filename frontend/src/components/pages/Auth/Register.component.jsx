@@ -43,13 +43,18 @@ const Register = () => {
     await axios
       .post("/user/register", registerCreds)
       .then((res) => {
-        console.log(res);
-        history.push("/");
+        if (res.status === 200) {
+          toast({ title: "Registerd!", isClosable: true });
+          history.push("/");
+
+        } else {
+          throw new Error;
+        }
       })
       .catch((err) => {
         toast({
           title: "Error!",
-          description: err.response.data.error,
+          description: err.msg,
           status: "error",
         });
         history.push("/register");

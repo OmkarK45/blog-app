@@ -19,9 +19,9 @@ const App = () => {
 
   useEffect(() => {
     const checkLoggedIn = async () => {
-      let token = localStorage.getItem("auth-token");
+      let token = localStorage.getItem("x-auth-token");
       if (token === null) {
-        localStorage.setItem("auth-token", "");
+        localStorage.setItem("x-auth-token", "");
         token = "";
       }
       const tokenRes = await axios.post("/user/tokenIsValid", null, {
@@ -43,9 +43,9 @@ const App = () => {
 
   return (
     <>
-      {/* Routing of the app */}
-      <Router>
-        <userContext.Provider value={{ userData, setUserData }}>
+      <userContext.Provider value={{ userData, setUserData }}>
+        {/* Routing of the app */}
+        <Router>
           <Header />
           <Switch>
             <Route path="/" exact component={Home} />
@@ -60,8 +60,8 @@ const App = () => {
             <Route path="/user/register" exact component={Register} />
             <Route component={NotFound} />
           </Switch>
-        </userContext.Provider>
-      </Router>
+        </Router>
+      </userContext.Provider>
     </>
   );
 };

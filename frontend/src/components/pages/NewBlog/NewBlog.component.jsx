@@ -38,14 +38,14 @@ const NewBlog = () => {
       const blogData = {
         title: blogTitle,
         content: value,
-        authorID: userData.user.username,
+        author: userData.user.username,
         date: new Date(),
         bannerURL: bannerURL,
+        authorID: userData.user.id,
         avatar: userData.user.avatar,
       };
 
       console.log("Complete Blog is ", blogData);
-      // make a post request to /blogs/new
       const options = {
         headers: {
           "x-auth-token": userData.token,
@@ -54,9 +54,10 @@ const NewBlog = () => {
       if (userData.user.id) {
         axios
           .post("/blogs/new", blogData, options)
-          .then(() => {})
+          .then(() => {
+            history.push("/blogs");
+          })
           .catch((err) => {
-            // toast here
             toast({
               title: "Error!",
               description:
@@ -67,7 +68,12 @@ const NewBlog = () => {
             history.push("/blogs");
           });
       } else {
-        // toast here
+        toast({
+          title: "Error!",
+          status: "error",
+          description: "You need to be logged in to publish a blog.",
+          isClosable: true,
+        });
         history.push("/user/login");
       }
     }

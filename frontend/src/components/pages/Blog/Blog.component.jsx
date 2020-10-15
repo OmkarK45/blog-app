@@ -6,6 +6,7 @@ import {
   Grid,
   Image,
   Text,
+  Button,
   Spinner,
   useToast,
 } from "@chakra-ui/core";
@@ -19,15 +20,31 @@ import { parseISO } from "date-fns";
 import format from "date-fns/format";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 
 const Blog = (props) => {
+  console.log("Props passed via link to blog are", props);
   const history = useHistory();
   const toast = useToast();
   const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
+
   const { userData } = useContext(userContext);
+  const user = props.location.state.user.user;
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
   const [dateVar, setDateVar] = useState("");
+  const [status, setStatus] = useState(false);
+
+  const checkLoggedIn = () => {
+    if (props.location.state.user.token === undefined) {
+      console.log("No logged in detected.");
+      setStatus(false);
+    } else {
+      console.log("yes the user is logged in ");
+      setStatus(true);
+    }
+  };
+
   useEffect(() => {
     axios
       .get(reqURL)
@@ -42,8 +59,13 @@ const Blog = (props) => {
         });
         history.push(reqURL);
       });
+    checkLoggedIn();
   }, []);
-  
+  console.log("author of this blog is : ", blog.authorID);
+  // console.log(
+  //   "User Context of this blog is ",
+  //   props.location.state.user.user.id
+  // );
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
@@ -79,6 +101,7 @@ const Blog = (props) => {
                   src={blog.bannerURL}
                   onLoad={handleImageLoad}
                   w="100%"
+                  height="280px"
                   maxH="280px"
                   objectFit="cover"
                   borderRadius="5px"
@@ -111,9 +134,23 @@ const Blog = (props) => {
                   <Image src={blog.avatar ? blog.avatar : ""} />
                 </Box>
                 <Box marginLeft="1rem">
-                  <Flex fontFamily={theme.fonts.body}>
-                    <Text>{blog.authorID} • </Text>
-                    <Text color="#64707D">&nbsp;{dateVar}</Text>
+                  <Flex
+                    fontFamily={theme.fonts.body}
+                    justifyContent="space-between"
+                  >
+                    <Box>
+                      <Text>{blog.author} • </Text>
+                      <Text color="#64707D">&nbsp;{dateVar}</Text>
+                    </Box>
+                    {status && blog.authorID === user.id ? (
+                      <Box>
+                        <Button backgroundColor={theme.colors.danger}>
+                          Delete
+                        </Button>
+                      </Box>
+                    ) : (
+                      "Not logged in to delete"
+                    )}
                   </Flex>
                 </Box>
               </Flex>

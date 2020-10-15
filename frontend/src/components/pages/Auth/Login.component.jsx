@@ -47,7 +47,7 @@ const Login = (props) => {
           user: res.data.user,
         });
         localStorage.setItem("x-auth-token", res.data.token);
-        localStorage.setItem("auth-token", res.data.token);
+        // localStorage.setItem("auth-token", res.data.token);
 
         toast({
           title: "Logged in !",

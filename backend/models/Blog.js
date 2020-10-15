@@ -17,7 +17,7 @@ const blogSchema = new mongoose.Schema({
     min: 3,
     max: 1024,
   },
-  authorID: {
+  author: {
     type: String,
   },
   content: {
@@ -31,6 +31,9 @@ const blogSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
+  authorID:{
+    type:String
+  }
 });
 
 module.exports = mongoose.model("Blog", blogSchema);
