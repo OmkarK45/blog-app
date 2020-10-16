@@ -18,19 +18,16 @@ import userContext from "../../../context/userContext";
 import "./Blog.styles.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 
 const Blog = (props) => {
-  const history = useHistory();
-  const toast = useToast();
-  const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
-
-  const { userData } = useContext(userContext);
-
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
   const [dateVar, setDateVar] = useState("");
-
-  
+  const { userData } = useContext(userContext);
+  const toast = useToast();
+  const history = useHistory();
+  const reqURL = `/blogs/${props.match.params.username}/${props.match.params.blogID}`;
 
   useEffect(() => {
     axios
@@ -41,26 +38,15 @@ const Blog = (props) => {
       .catch((err) => {
         toast({
           title: "Some error occured.",
-          description: "Please try reloading again.",
+          description: err.response.data.msg,
           isClosable: true,
         });
-        history.push(reqURL);
+        history.push("/blogs");
       });
   }, []);
+
   const handleImageLoad = () => {
     setImageURL("loaded");
-  };
-
-  const customMDTheme = {
-    heading: (property) => {
-      const { children } = property;
-      return (
-        <Heading as="h3" fontFamily={theme.fonts.body} fontSize="1.5rem">
-          {children}
-        </Heading>
-      );
-    },
-    ...defaults,
   };
 
   return (
@@ -122,14 +108,18 @@ const Blog = (props) => {
                     <Box>
                       <Text>{blog.author} • </Text>
                       <Text color="#64707D">&nbsp;{dateVar}</Text>
+                      {userData.user && userData.user ? (
+                        <AuthorMenu data={userData.user} blogInfo={blog} />
+                      ) : (
+                        ""
+                      )}
                     </Box>
-                    
                   </Flex>
                 </Box>
               </Flex>
               <Box padding={[""]}>
                 <ReactMarkdown
-                  renderers={ChakraUIRenderer(customMDTheme)}
+                  renderers={ChakraUIRenderer()}
                   source={blog.content}
                   escapeHtml={false}
                 />
