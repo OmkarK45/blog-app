@@ -56,7 +56,9 @@ router.get("/:username/:blogID", async (req, res) => {
       throw error;
     }
   } catch (error) {
-    res.status(404).json({ msg: "Blog not found." });
+    res
+      .status(404)
+      .json({ msg: "Requested blog was not found on the server." });
   }
 });
 
@@ -65,11 +67,10 @@ router.delete("/:username/:blogID", authentication, async (req, res) => {
   try {
     const removedBlog = await Blog.deleteOne({
       _id: req.params.blogID,
-      authorID: req.params.username,
     });
     res.redirect("/blogs");
   } catch (error) {
-    res.json({ error: "Something went wrong. Please try again or refresh." });
+    res.json(error);
   }
 });
 
