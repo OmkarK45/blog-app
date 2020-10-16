@@ -108,11 +108,26 @@ const Blog = (props) => {
                     <Box>
                       <Text>{blog.author} • </Text>
                       <Text color="#64707D">&nbsp;{dateVar}</Text>
-                      {userData.user && userData.user ? (
+                      <userContext.Consumer>
+                        {(value) => {
+                          console.log("Inside Consumer", value.userData);
+                          if (value.userData.user) {
+                            return (
+                              <AuthorMenu
+                                data={value.userData.user}
+                                blogInfo={blog}
+                              />
+                            );
+                          } else {
+                            return "";
+                          }
+                        }}
+                      </userContext.Consumer>
+                      {/* {userData.user && userData.user ? (
                         <AuthorMenu data={userData.user} blogInfo={blog} />
                       ) : (
                         ""
-                      )}
+                      )} */}
                     </Box>
                   </Flex>
                 </Box>
