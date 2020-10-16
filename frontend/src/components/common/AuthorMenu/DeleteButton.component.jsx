@@ -26,7 +26,7 @@ const Delete = (props) => {
           status: "success",
           isClosable: true,
         });
-        history.push("/blogs");
+        history.goBack();
       })
       .catch((err) => {
         console.log(err);
