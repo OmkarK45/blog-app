@@ -18,12 +18,13 @@ const AuthorMenu = (props) => {
   const { userData } = useContext(userContext);
 
   console.log("Current user", props.data._id);
+  console.log("Current userData", userData.user.id);
   console.log("Blogs author", props.blogInfo.authorID);
 
   return (
     <React.Fragment>
       {props.blogInfo ? (
-        props.blogInfo.authorID === props.data._id ? (
+        props.blogInfo.authorID === (userData.user.id || props.data._id) ? (
           <Delete data={props} />
         ) : (
           "Not Author no delete button for you."
