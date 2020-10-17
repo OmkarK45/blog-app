@@ -8,9 +8,13 @@ const methodOverride = require("method-override");
 const homeRoute = require("./routes/homeRoute");
 const blogRoute = require("./routes/blogRoute");
 const authRoute = require("./routes/authRoute");
+const helmet = require("helmet");
 const app = express();
 
 // Express setup
+app.use(helmet());
+app.use(helmet.xssFilter());
+app.disable("x-powered-by");
 app.use(
   bodyParser.urlencoded({ extended: false }, { useUnifiedTopology: true })
 );
