@@ -15,13 +15,20 @@ const Home = (props) => {
     <React.Fragment>
       <Box
         className="banner"
-        minH="91vh"
+        minH={["82vh", "91vh"]}
         display="flex"
         backgroundColor={theme.colors.white}
         justifyContent="center"
+        position="relative"
       >
         <Flex marginTop={["4rem", "10rem"]} justifyContent={["center", ""]}>
-          <Box padding="0 1rem" margin="0 auto">
+          <Box
+            className="ok"
+            display="flex"
+            flexDirection="column"
+            padding="0 1rem"
+            margin="0 auto"
+          >
             <Text
               style={{
                 fontFamily: theme.fonts.body,
@@ -59,6 +66,41 @@ const Home = (props) => {
               <Button textTransform="uppercase">
                 <Link to="/blogs">Explore Blogs</Link>
               </Button>
+            </Box>
+            <Box
+              position="absolute"
+              bottom={["-1px", "0"]}
+              left="50%"
+              transform="translateX(-50%)"
+              margin="0 auto"
+              padding="1rem 0"
+              width='90%'
+            >
+              <Text
+                marginBottom="1rem"
+                fontFamily={theme.fonts.body}
+                textAlign="center"
+              >
+                Proudly made in India
+              </Text>
+              <Flex justifyContent='center'>
+                <a
+                style={{display:'inline-block',}}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/in/omkark45/"
+                >
+                  About this project.
+                </a>
+                <a
+                style={{display:'inline-block', marginLeft:'1rem'}}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://github.com/omkark45/blog-app"
+                >
+                  Source Code.
+                </a>
+              </Flex>
             </Box>
           </Box>
         </Flex>
