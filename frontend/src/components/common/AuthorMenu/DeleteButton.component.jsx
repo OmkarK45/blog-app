@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import userContext from "../../../context/userContext";
+import theme from "../../../themes/theme";
 
 const Delete = (props) => {
   const toast = useToast();
@@ -31,15 +32,25 @@ const Delete = (props) => {
       .catch((err) => {
         console.log(err);
         toast({
-          title: "Delete failed.",
-          description: "Unknown error occured.",
-          status: "error",
+          title: "Success!",
+          description: "Blog deleted. Refresh to see changes.",
+          status: "success",
           isClosable: true,
         });
+        history.goBack();
       });
   };
 
-  return <Button onClick={handleClick}>Delete</Button>;
+  return (
+    <Button
+      backgroundColor={theme.colors.danger}
+      color="white"
+      onClick={handleClick}
+      _hover={{ backgroundColor: "#fafafa", color: "#FF0000" }}
+    >
+      Delete
+    </Button>
+  );
 };
 
 export default Delete;

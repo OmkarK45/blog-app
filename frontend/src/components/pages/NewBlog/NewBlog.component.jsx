@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import {
@@ -22,6 +22,7 @@ const NewBlog = () => {
   const { userData } = useContext(userContext);
   const history = useHistory();
   const toast = useToast();
+  let isSubmitting = false;
   const handleSubmit = (e) => {
     console.log("Current userdata is ", userData);
     e.preventDefault();
@@ -55,6 +56,13 @@ const NewBlog = () => {
           .post("/blogs/new", blogData, options)
           .then(() => {
             history.push("/blogs");
+            toast({
+              title: "Blog Published!",
+              description: "Please reload if it doesn't show up.",
+              isClosable: true,
+              status: "success",
+            });
+            isSubmitting = true;
           })
           .catch((err) => {
             toast({
@@ -79,11 +87,12 @@ const NewBlog = () => {
   };
   const handleBannerURL = (e) => {
     setBannerURL(e.target.value);
-    // Add validation if its a URL or not
   };
+
   const handleBlogTitle = (e) => {
     setBlogTitle(e.target.value);
   };
+ 
 
   return (
     <React.Fragment>
@@ -125,6 +134,7 @@ const NewBlog = () => {
               color="white"
               _hover={{ color: "white", backgroundColor: "#323EBE" }}
               type="submit"
+              isLoading={isSubmitting}
             >
               Publish
             </Button>

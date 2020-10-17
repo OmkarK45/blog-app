@@ -27,10 +27,10 @@ const AuthorMenu = (props) => {
         props.blogInfo.authorID === (userData.user.id || props.data._id) ? (
           <Delete data={props} />
         ) : (
-          "Not Author no delete button for you."
+          ""
         )
       ) : (
-        "no blog is there"
+        ""
       )}
     </React.Fragment>
   );

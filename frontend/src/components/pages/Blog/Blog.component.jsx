@@ -23,7 +23,6 @@ import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 const Blog = (props) => {
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
-  const [dateVar, setDateVar] = useState("");
   const { userData } = useContext(userContext);
   const toast = useToast();
   const history = useHistory();
@@ -91,45 +90,49 @@ const Blog = (props) => {
               >
                 {blog.title || <Skeleton />}
               </Heading>
-              <Flex padding="1rem 0" alignItems="center">
-                <Box
-                  width="40px"
-                  height="40px"
-                  borderRadius="50%"
-                  overflow="hidden"
-                >
-                  <Image src={blog.avatar ? blog.avatar : ""} />
-                </Box>
-                <Box marginLeft="1rem">
-                  <Flex
-                    fontFamily={theme.fonts.body}
-                    justifyContent="space-between"
+              <Flex
+                padding="1rem 0"
+                alignItems="center"
+                justifyContent="space-between"
+              >
+                <Box display="flex">
+                  <Box
+                    width="40px"
+                    height="40px"
+                    borderRadius="50%"
+                    overflow="hidden"
                   >
-                    <Box>
-                      <Text>{blog.author} • </Text>
-                      <Text color="#64707D">&nbsp;{dateVar}</Text>
-                      <userContext.Consumer>
-                        {(value) => {
-                          console.log("Inside Consumer", value.userData);
-                          if (value.userData.user) {
-                            return (
-                              <AuthorMenu
-                                data={value.userData.user}
-                                blogInfo={blog}
-                              />
-                            );
-                          } else {
-                            return "";
-                          }
-                        }}
-                      </userContext.Consumer>
-                      {/* {userData.user && userData.user ? (
-                        <AuthorMenu data={userData.user} blogInfo={blog} />
-                      ) : (
-                        ""
-                      )} */}
-                    </Box>
-                  </Flex>
+                    <Image
+                      src={blog.avatar ? blog.avatar : ""}
+                      objectFit="cover"
+                    />
+                  </Box>
+                  <Box
+                    marginLeft="1rem"
+                    display="flex"
+                    alignItems="center"
+                    fontFamily={theme.fonts.body}
+                  >
+                    <Text>{blog.author} </Text>
+                    {/* <Text color="#64707D">&nbsp;{dateVar}</Text> */}
+                  </Box>
+                </Box>
+                <Box>
+                  <userContext.Consumer>
+                    {(value) => {
+                      console.log("Inside Consumer", value.userData);
+                      if (value.userData.user) {
+                        return (
+                          <AuthorMenu
+                            data={value.userData.user}
+                            blogInfo={blog}
+                          />
+                        );
+                      } else {
+                        return "";
+                      }
+                    }}
+                  </userContext.Consumer>
                 </Box>
               </Flex>
               <Box padding={[""]}>

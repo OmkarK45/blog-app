@@ -67,7 +67,7 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <Flex justifyContent="center" >
+      <Flex justifyContent="center">
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}
           border="1px solid #eee"
@@ -77,7 +77,7 @@ const Login = (props) => {
           backgroundColor="white"
         >
           <Box margin="0 auto">
-            <Heading>Login.</Heading>
+            <Heading fontFamily={theme.fonts.body}>Login.</Heading>
           </Box>
           <form onSubmit={handleSubmit}>
             <FormControl marginTop="2rem">

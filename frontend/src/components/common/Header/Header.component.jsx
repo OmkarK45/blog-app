@@ -20,6 +20,7 @@ const Header = (props) => {
   const { userData, setUserData } = useContext(userContext);
   const history = useHistory();
   const toast = useToast();
+
   const logout = () => {
     toast({
       title: "Successfully logged out.",
@@ -33,6 +34,8 @@ const Header = (props) => {
     localStorage.setItem("auth-token", "");
     localStorage.setItem("x-auth-token", "");
   };
+  
+
   return (
     <React.Fragment>
       <Box width="100%">

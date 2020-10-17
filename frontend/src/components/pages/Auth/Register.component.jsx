@@ -93,7 +93,7 @@ const Register = () => {
           backgroundColor="white"
         >
           <Box margin="0 auto">
-            <Heading>Register.</Heading>
+            <Heading fontFamily={theme.fonts.body}>Register.</Heading>
           </Box>
           <form onSubmit={handleSubmit}>
             <FormControl marginTop="2rem">
