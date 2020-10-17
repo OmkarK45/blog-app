@@ -48,7 +48,7 @@ const Register = () => {
           history.push("/");
 
         } else {
-          throw new Error;
+          throw new Error();
         }
       })
       .catch((err) => {
