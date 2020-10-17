@@ -78,7 +78,7 @@ const Blog = (props) => {
             </Box>
 
             <Box
-              padding={["0 0.3rem", "0 .7rem", "0 3rem"]}
+              padding={["0 0.5rem", "0 .7rem", "0 3rem"]}
               className="md-content"
             >
               <Heading
