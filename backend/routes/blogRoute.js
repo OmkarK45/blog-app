@@ -7,12 +7,21 @@ const authentication = require("../middleware/authentication");
 router.get("/", async (req, res) => {
   try {
     // Find all blogs in the database
-    const blogs = await Blog.find({isApproved:true});
+    const blogs = await Blog.find({ isApproved: true });
     res.json({ blogs });
   } catch (error) {
     res.json({
       error: "Failed to fetch blogs ! Please try again.",
     });
+  }
+});
+
+router.get("/unapproved", async (req, res) => {
+  try {
+    const blogs = await Blog.find({});
+    res.json(blogs);
+  } catch (error) {
+    res.json({ msg: error });
   }
 });
 
@@ -74,20 +83,16 @@ router.delete("/:username/:blogID", authentication, async (req, res) => {
   }
 });
 
-router.patch("/:username/:blogID", authentication, async (req, res) => {
+router.patch("/:author/:blogID", authentication, async (req, res) => {
   try {
     const updatedBlog = await Blog.updateOne(
       {
         _id: req.params.blogID,
-        authorID: req.params.username,
+        // author: req.params.author,
       },
       {
         $set: {
-          title: req.body.title,
-          subtitle: req.body.subtitle,
-          authorID: req.body.username,
-          content: req.body.content,
-          date: req.body.date,
+          isApproved: req.body.isApproved,
         },
       }
     );
