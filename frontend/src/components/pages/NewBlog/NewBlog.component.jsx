@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, } from "react";
+import React, { useContext, useEffect } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import { useState } from "react";
 import {
@@ -53,7 +53,7 @@ const NewBlog = () => {
       };
       if (userData.user.id) {
         axios
-          .post("/blogs/pending", blogData, options)
+          .post("/blogs/new", blogData, options)
           .then(() => {
             history.push("/blogs");
             toast({
@@ -92,7 +92,6 @@ const NewBlog = () => {
   const handleBlogTitle = (e) => {
     setBlogTitle(e.target.value);
   };
- 
 
   return (
     <React.Fragment>
