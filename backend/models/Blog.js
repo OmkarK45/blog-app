@@ -31,9 +31,13 @@ const blogSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  authorID:{
-    type:String
-  }
+  authorID: {
+    type: String,
+  },
+  isApproved: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("Blog", blogSchema);
