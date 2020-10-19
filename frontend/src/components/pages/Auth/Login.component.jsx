@@ -42,9 +42,11 @@ const Login = (props) => {
       .post("/user/login", loginCreds)
       .then((res) => {
         console.log(res.data.user);
+
         setUserData({
           token: res.data.token,
           user: res.data.user,
+          isAdmin: res.data.user.isAdmin,
         });
         localStorage.setItem("x-auth-token", res.data.token);
         // localStorage.setItem("auth-token", res.data.token);

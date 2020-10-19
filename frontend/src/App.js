@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import Home from "./components/pages/Home/Home.component";
 import Blog from "./components/pages/Blog/Blog.component";
 import Blogs from "./components/pages/Blogs/Blogs.component";
@@ -8,7 +14,7 @@ import Login from "./components/pages/Auth/Login.component";
 import Register from "./components/pages/Auth/Register.component";
 import NotFound from "./components/pages/404/NotFound.component";
 import Header from "./components/common/Header/Header.component";
-import AdminPage from './components/pages/AdminPage/AdminPage.component'
+import AdminPage from "./components/pages/AdminPage/AdminPage.component";
 import axios from "axios";
 import userContext from "./context/userContext";
 
@@ -16,6 +22,7 @@ const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
+    isAdmin: false,
   });
 
   useEffect(() => {
@@ -59,7 +66,11 @@ const App = () => {
             <Route path="/blogs/new" exact component={NewBlog} />
             <Route path="/user/login" exact component={Login} />
             <Route path="/user/register" exact component={Register} />
-            <Route path="/user/adminPage" exact component={AdminPage}/>
+            {userData.isAdmin ? (
+              <Route path="/user/adminPage" exact component={AdminPage} />
+            ) : (
+              <Redirect to="/user/login" />
+            )}
             <Route component={NotFound} />
           </Switch>
         </Router>
