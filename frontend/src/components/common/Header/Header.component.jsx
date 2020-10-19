@@ -29,12 +29,12 @@ const Header = (props) => {
     setUserData({
       token: undefined,
       user: undefined,
+      isAdmin: false,
     });
     history.push("/");
     localStorage.setItem("auth-token", "");
     localStorage.setItem("x-auth-token", "");
   };
-  
 
   return (
     <React.Fragment>
@@ -70,7 +70,7 @@ const Header = (props) => {
                     <Link to="/blogs/new">
                       <Flex>
                         <AiOutlineFileAdd />
-                        <Text marginLeft="0.3rem"  fontFamily={theme.fonts.body}>
+                        <Text marginLeft="0.3rem" fontFamily={theme.fonts.body}>
                           New Blog
                         </Text>
                       </Flex>
