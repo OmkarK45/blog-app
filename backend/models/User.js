@@ -31,7 +31,16 @@ const userSchema = new mongoose.Schema({
     required: false,
   },
   socialMedia: [],
-  blogs: [Blog],
+  blogs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Blog",
+    },
+  ],
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
