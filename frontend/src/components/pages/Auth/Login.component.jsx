@@ -53,7 +53,11 @@ const Login = (props) => {
           title: "Logged in !",
           status: "success",
         });
-        history.push("/blogs");
+        if (res.data.user.isAdmin) {
+          history.push("/user/adminPage");
+        } else {
+          history.push("/blogs");
+        }
       })
       .catch((err) => {
         toast({

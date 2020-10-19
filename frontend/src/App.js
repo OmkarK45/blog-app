@@ -8,6 +8,7 @@ import Login from "./components/pages/Auth/Login.component";
 import Register from "./components/pages/Auth/Register.component";
 import NotFound from "./components/pages/404/NotFound.component";
 import Header from "./components/common/Header/Header.component";
+import AdminPage from './components/pages/AdminPage/AdminPage.component'
 import axios from "axios";
 import userContext from "./context/userContext";
 
@@ -58,6 +59,7 @@ const App = () => {
             <Route path="/blogs/new" exact component={NewBlog} />
             <Route path="/user/login" exact component={Login} />
             <Route path="/user/register" exact component={Register} />
+            <Route path="/user/adminPage" exact component={AdminPage}/>
             <Route component={NotFound} />
           </Switch>
         </Router>

@@ -53,7 +53,7 @@ const NewBlog = () => {
       };
       if (userData.user.id) {
         axios
-          .post("/blogs/new", blogData, options)
+          .post("/blogs/pending", blogData, options)
           .then(() => {
             history.push("/blogs");
             toast({
