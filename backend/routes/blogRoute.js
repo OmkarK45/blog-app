@@ -7,7 +7,7 @@ const authentication = require("../middleware/authentication");
 router.get("/", async (req, res) => {
   try {
     // Find all blogs in the database
-    const blogs = await Blog.find({});
+    const blogs = await Blog.find({isApproved:true});
     res.json({ blogs });
   } catch (error) {
     res.json({

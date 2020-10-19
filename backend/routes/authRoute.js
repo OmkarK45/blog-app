@@ -15,7 +15,7 @@ router.post("/login", async (req, res) => {
       .json({ error: "Please make sure to enter all fields." })
       .status(400);
 
-  User.findOne({ email }).then((user) => {
+  await User.findOne({ email }).then((user) => {
     if (!user)
       return res.status(400).json({
         msg: "Invalid Credentials. Please check again.",
@@ -29,6 +29,7 @@ router.post("/login", async (req, res) => {
 
       jwt.sign({ id: user._id }, process.env.JWT_SECRET, (err, token) => {
         if (err) throw err;
+
         res.json({
           token: token,
           user: {
@@ -36,6 +37,8 @@ router.post("/login", async (req, res) => {
             username: user.username,
             email: user.email,
             avatar: user.avatar,
+            blogs: user.blogs,
+            isAdmin: user.isAdmin
           },
         });
       });
@@ -63,7 +66,7 @@ router.post("/tokenIsValid", async (req, res) => {
 router.get("/", authentication, async (req, res) => {
   const { username, socialMedia, _id, email, blogs } = await User.findById(
     req.user.id
-  );
+  ).populate("blogs");
 
   res.json({
     username,
@@ -82,7 +85,7 @@ router.get("/register", (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const { username, name, email, password, avatar, socialMedia } = req.body;
+    const { username, name, email, password, avatar, socialMedia, isAdmin } = req.body;
     if (!username || !email || !password)
       return res.status(400).json({ error: "Please fill all the fields." });
     const result = await User.findOne({
@@ -104,6 +107,7 @@ router.post("/register", async (req, res) => {
         password,
         avatar,
         socialMedia,
+        isAdmin
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (error, hash) => {
@@ -123,5 +127,11 @@ router.post("/register", async (req, res) => {
     res.json({ error: "Some Error occured." }).status(501);
   }
 });
+
+
+router.get("/adminPage", (req,res)=>{
+  res.send('Welcome to admin page')
+})
+
 
 module.exports = router;
