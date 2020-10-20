@@ -7,12 +7,17 @@ import theme from "../../../themes/theme";
 import { Link } from "react-router-dom";
 import home from "../../../assets/Images/bg.jpg";
 import userContext from "../../../context/userContext";
+import SEO from "./../../common/SEO/SEO.component";
 
 const Home = (props) => {
   const { userData } = useContext(userContext);
 
   return (
     <React.Fragment>
+      <SEO
+        title="Welcome! | ExpressBlogs"
+        content="Explore or write your own blog very easily! Just a signup required or explore blogs written by experts and loved by users."
+      />
       <Box
         className="banner"
         minH={["82vh", "91vh"]}
@@ -74,7 +79,7 @@ const Home = (props) => {
               transform="translateX(-50%)"
               margin="0 auto"
               padding="1rem 0"
-              width='90%'
+              width="90%"
             >
               <Text
                 marginBottom="1rem"
@@ -83,9 +88,9 @@ const Home = (props) => {
               >
                 Proudly made in India
               </Text>
-              <Flex justifyContent='center'>
+              <Flex justifyContent="center">
                 <a
-                style={{display:'inline-block',}}
+                  style={{ display: "inline-block" }}
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.linkedin.com/in/omkark45/"
@@ -93,7 +98,7 @@ const Home = (props) => {
                   About this project.
                 </a>
                 <a
-                style={{display:'inline-block', marginLeft:'1rem'}}
+                  style={{ display: "inline-block", marginLeft: "1rem" }}
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://github.com/omkark45/blog-app"

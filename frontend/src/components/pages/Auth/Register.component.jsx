@@ -14,6 +14,8 @@ import {
 } from "@chakra-ui/core";
 import theme from "../../../themes/theme";
 import axios from "axios";
+import SEO from "./../../common/SEO/SEO.component";
+
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -83,6 +85,7 @@ const Register = () => {
 
   return (
     <React.Fragment>
+      <SEO title="Register."/>
       <Flex justifyContent="center">
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}

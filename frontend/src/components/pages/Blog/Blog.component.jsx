@@ -20,6 +20,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import SEO from "./../../common/SEO/SEO.component";
 
 const Blog = (props) => {
   const [blog, setBlog] = useState("");
@@ -51,6 +52,7 @@ const Blog = (props) => {
 
   return (
     <React.Fragment>
+      <SEO title={blog.title} />
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
@@ -63,19 +65,19 @@ const Blog = (props) => {
             borderRadius="10px"
           >
             <Box overflow="hidden">
-              {blog.bannerURL !== "" ? (
-                <Image
-                  src={blog.bannerURL}
-                  onLoad={handleImageLoad}
-                  w="100%"
-                  height="280px"
-                  maxH="280px"
-                  objectFit="cover"
-                  borderRadius="5px"
-                ></Image>
-              ) : (
-                ""
-              )}
+              {blog.bannerURL !== ""
+                ? (
+                    <Image
+                      src={blog.bannerURL}
+                      onLoad={handleImageLoad}
+                      w="100%"
+                      height="280px"
+                      maxH="280px"
+                      objectFit="cover"
+                      borderRadius="5px"
+                    ></Image>
+                  ) || <Skeleton />
+                : ""}
             </Box>
 
             <Box
@@ -109,7 +111,7 @@ const Blog = (props) => {
                         objectFit="cover"
                       />
                     ) : (
-                      <HiOutlineUserCircle className='user-icon' />
+                      <HiOutlineUserCircle className="user-icon" />
                     )}
                   </Box>
                   <Box

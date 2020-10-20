@@ -4,6 +4,7 @@ import { Heading, Flex, Grid, Box, Spinner } from "@chakra-ui/core";
 import BlogCard from "./../BlogCard/BlogCard.component";
 import theme from "../../../themes/theme";
 import "./Blogs.styles.scss";
+import SEO from "./../../common/SEO/SEO.component";
 
 const Blogs = () => {
   //   const [blogsList, setBlogsList] = useState();
@@ -18,6 +19,7 @@ const Blogs = () => {
 
   return (
     <div>
+      <SEO title="Trending Blogs."/>
       <Grid
         margin="0 auto"
         maxW={["99%", "90%", "95%", "99%"]}

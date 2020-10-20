@@ -76,13 +76,14 @@ Schema Blog Post
 TODO -
 
 - Add share button to share on social media.
-- Remove ugly URL id and replace with clean title - mongoose slug generator.
-- Add delete and edit button
-- Delete button
-  Check if authenticated and authorized == If token match == > POST request for deletion
+- [Done] Remove ugly URL id and replace with clean title - mongoose slug generator.
+- Add delete [Done] and edit button
+- Delete button [Done]
+  Check if authenticated and authorized == If token match == > POST request for deletion [Done]
+
 - Edit button
   Check if user is Blog owner == if not ==> res.redirect back --> if yes prepopulate form with edit values --> resubmit with PATCH request in axios. redirect to that blog again.
 
 - Share button to share current URL to various social Media
-- Add helmet on each page to show what page we are on.
+- Add helmet on each page to show what page we are on. [Now]
 - Add edit button to edit the blog and prepopulate the blog edit page.

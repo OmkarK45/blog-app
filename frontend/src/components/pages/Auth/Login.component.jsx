@@ -17,6 +17,7 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import userContext from "../../../context/userContext";
+import SEO from "./../../common/SEO/SEO.component";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -73,6 +74,7 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
+      <SEO title='Login.'/>
       <Flex justifyContent="center">
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}

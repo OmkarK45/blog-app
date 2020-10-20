@@ -14,6 +14,7 @@ import theme from "../../../themes/theme";
 import userContext from "../../../context/userContext";
 import axios from "axios";
 import { useHistory, Redirect } from "react-router-dom";
+import SEO from "./../../common/SEO/SEO.component";
 
 const NewBlog = () => {
   const [value, setValue] = useState();
@@ -95,6 +96,7 @@ const NewBlog = () => {
 
   return (
     <React.Fragment>
+      <SEO title="Publish your blog."/>
       <Flex
         flexDirection="column"
         maxW={["90%", "1200px"]}

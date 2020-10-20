@@ -5,6 +5,7 @@ import "./AdminPage.styles.scss";
 import shortid from "shortid";
 import userContext from "../../../context/userContext";
 import { useToast } from "@chakra-ui/core";
+import SEO from "./../../common/SEO/SEO.component";
 
 const AdminPage = () => {
   const [blogs, setBlogs] = useState();
@@ -46,6 +47,7 @@ const AdminPage = () => {
   return (
     <React.Fragment>
       {/* {JSON.stringify(blogs)} */}
+      <SEO title="Command Center"/>
       <h1>Admin Page</h1>
       <div className="table-container">
         <table>

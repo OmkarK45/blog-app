@@ -1,10 +1,12 @@
 import React from "react";
 import { Heading, Text, Button, Flex } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
+import SEO from "./../../common/SEO/SEO.component";
 
 const NotFound = () => {
   return (
     <React.Fragment>
+      <SEO title="404 | Blog not found!"/>
       <Flex
         height="50vh"
         alignItems="center"
