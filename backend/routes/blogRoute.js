@@ -56,9 +56,9 @@ router.post("/new", authentication, async (req, res) => {
   }
 });
 
-router.get("/:username/:blogID", async (req, res) => {
+router.get("/:username/:slug", async (req, res) => {
   try {
-    const foundBlog = await Blog.findById(req.params.blogID);
+    const foundBlog = await Blog.findOne({ slug: req.params.slug });
     if (foundBlog) {
       res.json(foundBlog);
     } else {
