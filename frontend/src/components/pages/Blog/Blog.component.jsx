@@ -19,6 +19,7 @@ import "./Blog.styles.scss";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
+import { HiOutlineUserCircle } from "react-icons/hi";
 
 const Blog = (props) => {
   const [blog, setBlog] = useState("");
@@ -93,7 +94,7 @@ const Blog = (props) => {
               <Flex
                 padding="1rem 0"
                 alignItems="center"
-                justifyContent="space-between"
+                justifyContent={["flex-start", "space-between"]}
               >
                 <Box display="flex">
                   <Box
@@ -102,10 +103,14 @@ const Blog = (props) => {
                     borderRadius="50%"
                     overflow="hidden"
                   >
-                    <Image
-                      src={blog.avatar ? blog.avatar : ""}
-                      objectFit="cover"
-                    />
+                    {blog.avatar ? (
+                      <Image
+                        src={blog.avatar ? blog.avatar : ""}
+                        objectFit="cover"
+                      />
+                    ) : (
+                      <HiOutlineUserCircle className='user-icon' />
+                    )}
                   </Box>
                   <Box
                     marginLeft="1rem"
@@ -114,7 +119,7 @@ const Blog = (props) => {
                     fontFamily={theme.fonts.body}
                   >
                     <Text>{blog.author} </Text>
-                    {/* <Text color="#64707D">&nbsp;{dateVar}</Text> */}
+                    <Text color="#64707D">&nbsp;{blog.date}</Text>
                   </Box>
                 </Box>
                 <Box>

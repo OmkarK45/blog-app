@@ -30,7 +30,7 @@ const BlogCard = (props) => {
   }, []);
 
   return (
-    <Link to={`/blogs/${props.data.author}/${props.data._id}`}>
+    <Link to={`/blogs/${props.data.author}/${props.data.slug}`}>
       <Box
         maxH="400px"
         margin="1rem 0"

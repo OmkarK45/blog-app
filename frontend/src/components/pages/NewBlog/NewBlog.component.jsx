@@ -58,7 +58,7 @@ const NewBlog = () => {
             history.push("/blogs");
             toast({
               title: "Blog Published!",
-              description: "Please reload if it doesn't show up.",
+              description: "Please wait for approval :)",
               isClosable: true,
               status: "success",
             });
