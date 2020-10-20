@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/User").schema;
+const slugify = require("slugify");
 
 const blogSchema = new mongoose.Schema({
   title: {
@@ -38,6 +39,16 @@ const blogSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  slug: {
+    type: String,
+    unique: true,
+    required: true,
+  },
 });
-
+blogSchema.pre("validate", function (next) {
+  if (this.title) {
+    this.slug = slugify(this.title, { lower: true, strict: true });
+  }
+  next()
+});
 module.exports = mongoose.model("Blog", blogSchema);
