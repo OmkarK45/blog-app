@@ -15,6 +15,7 @@ import Register from "./components/pages/Auth/Register.component";
 import NotFound from "./components/pages/404/NotFound.component";
 import Header from "./components/common/Header/Header.component";
 import AdminPage from "./components/pages/AdminPage/AdminPage.component";
+import EditPage from './components/pages/EditPage/EditPage.component';
 import axios from "axios";
 import userContext from "./context/userContext";
 
@@ -64,6 +65,7 @@ const App = () => {
               render={(props) => <Blog {...props} />}
             ></Route>
             <Route path="/blogs/new" exact component={NewBlog} />
+            <Route path="/blogs/edit" exact component={EditPage}></Route>
             <Route path="/user/login" exact component={Login} />
             <Route path="/user/register" exact component={Register} />
             {userData.isAdmin ? (
