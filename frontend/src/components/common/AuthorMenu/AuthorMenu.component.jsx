@@ -16,6 +16,7 @@ import userContext from "../../../context/userContext";
 import { useEffect } from "react";
 import Edit from "./Edit.component";
 import { HiMenu,HiOutlineTrash } from "react-icons/hi";
+import EditPage from './../../pages/EditPage/EditPage.component';
 
 const AuthorMenu = (props) => {
   const { userData } = useContext(userContext);
@@ -35,10 +36,10 @@ const AuthorMenu = (props) => {
               </MenuButton>
               <MenuList minWidth="35px">
                 <MenuItem>
-                 <Delete />
+                 <Delete data={props}/>
                 </MenuItem>
                 <MenuItem>
-                  <Edit />
+                  <Edit data={props}/>
                 </MenuItem>
               </MenuList>
             </Menu>
