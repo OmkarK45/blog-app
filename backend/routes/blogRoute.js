@@ -37,7 +37,6 @@ router.get("/new", authentication, async (req, res) => {
 router.post("/new", authentication, async (req, res) => {
   const newBlog = new Blog({
     title: req.body.title,
-    subtitle: req.body.subtitle,
     author: req.body.author,
     content: req.body.content,
     date: req.body.date,
@@ -80,6 +79,26 @@ router.delete("/:username/:blogID", authentication, async (req, res) => {
     res.redirect("/blogs");
   } catch (error) {
     res.json(error);
+  }
+});
+
+router.patch("/:author/:blogID", authentication, async (req, res) => {
+  try {
+    const blogToBeEdited = await Blog.updateOne(
+      {
+        _id: req.params.blogID,
+      },
+      {
+        $set: {
+          bannerURL: req.body.bannerURL,
+          title: req.body.title,
+          content: req.body.content,
+        },
+      }
+    );
+    //  res.json({ msg: blogToBeEdited });
+  } catch (error) {
+     res.json({ msg: error });
   }
 });
 
