@@ -96,7 +96,7 @@ const NewBlog = () => {
 
   return (
     <React.Fragment>
-      <SEO title="Publish your blog."/>
+      <SEO title="Publish your blog." />
       <Flex
         flexDirection="column"
         maxW={["90%", "1200px"]}

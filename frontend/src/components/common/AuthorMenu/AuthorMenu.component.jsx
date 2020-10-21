@@ -9,10 +9,13 @@ import {
   MenuOptionGroup,
   MenuItemOption,
   Text,
+  Button,
 } from "@chakra-ui/core";
 import Delete from "./DeleteButton.component";
 import userContext from "../../../context/userContext";
 import { useEffect } from "react";
+import Edit from "./Edit.component";
+import { HiMenu,HiOutlineTrash } from "react-icons/hi";
 
 const AuthorMenu = (props) => {
   const { userData } = useContext(userContext);
@@ -25,7 +28,23 @@ const AuthorMenu = (props) => {
     <React.Fragment>
       {props.blogInfo ? (
         props.blogInfo.authorID === (userData.user.id || props.data._id) ? (
-          <Delete data={props} />
+          <div>
+            <Menu>
+              <MenuButton as={Button}>
+                <HiMenu />
+              </MenuButton>
+              <MenuList minWidth="35px">
+                <MenuItem>
+                 <Delete />
+                </MenuItem>
+                <MenuItem>
+                  <Edit />
+                </MenuItem>
+              </MenuList>
+            </Menu>
+            {/* <Delete data={props} />
+            <Edit data={props} /> */}
+          </div>
         ) : (
           ""
         )

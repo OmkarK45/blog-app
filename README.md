@@ -84,6 +84,6 @@ TODO -
 - Edit button
   Check if user is Blog owner == if not ==> res.redirect back --> if yes prepopulate form with edit values --> resubmit with PATCH request in axios. redirect to that blog again.
 
-- Share button to share current URL to various social Media
-- Add helmet on each page to show what page we are on. [Now]
+- Share button to share current URL to various social Media 
+- Add helmet on each page to show what page we are on. [Now] [Done]
 - Add edit button to edit the blog and prepopulate the blog edit page.

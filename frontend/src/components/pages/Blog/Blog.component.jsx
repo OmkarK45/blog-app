@@ -20,6 +20,8 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 import { HiOutlineUserCircle } from "react-icons/hi";
+import { parseISO } from "date-fns";
+import format from "date-fns/format";
 import SEO from "./../../common/SEO/SEO.component";
 
 const Blog = (props) => {
@@ -93,37 +95,35 @@ const Blog = (props) => {
               >
                 {blog.title || <Skeleton />}
               </Heading>
-              <Flex
-                padding="1rem 0"
-                alignItems="center"
-                justifyContent={["flex-start", "space-between"]}
+              <Box
+                margin="1.5rem 0"
+                display="flex"
+                justifyContent={["space-between"]}
               >
-                <Box display="flex">
-                  <Box
-                    width="40px"
-                    height="40px"
-                    borderRadius="50%"
-                    overflow="hidden"
-                  >
+                <Box display="flex" alignItems="center">
+                  <Box height="45px" width="45px" marginRight="1rem">
                     {blog.avatar ? (
                       <Image
-                        src={blog.avatar ? blog.avatar : ""}
-                        objectFit="cover"
+                        display="block"
+                        borderRadius="50%"
+                        src={blog.avatar}
                       />
                     ) : (
                       <HiOutlineUserCircle className="user-icon" />
                     )}
                   </Box>
-                  <Box
-                    marginLeft="1rem"
-                    display="flex"
-                    alignItems="center"
-                    fontFamily={theme.fonts.body}
-                  >
-                    <Text>{blog.author} </Text>
-                    <Text color="#64707D">&nbsp;{blog.date}</Text>
+                  <Box>
+                    <Text
+                      fontSize={theme.fontSizes["md"]}
+                      fontWeight="bold"
+                      fontFamily={theme.fonts.body}
+                    >
+                      {blog.author}
+                    </Text>
+                    <Text fontSize={theme.fontSizes["sm"]}>{blog.date}</Text>
                   </Box>
                 </Box>
+
                 <Box>
                   <userContext.Consumer>
                     {(value) => {
@@ -141,7 +141,8 @@ const Blog = (props) => {
                     }}
                   </userContext.Consumer>
                 </Box>
-              </Flex>
+              </Box>
+
               <Box padding={[""]}>
                 <ReactMarkdown
                   renderers={ChakraUIRenderer()}

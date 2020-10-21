@@ -138,7 +138,7 @@ const Register = () => {
             <FormControl marginTop="2rem">
               <FormLabel htmlFor="avatar">Avatar URL (Direct Link)</FormLabel>
               <Input
-                type="avatar"
+                type="url"
                 id="avatar"
                 name="avatar"
                 value={avatar}

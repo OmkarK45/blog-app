@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Text, Button, useToast } from "@chakra-ui/core";
+import { Text, Button, useToast, Box } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import userContext from "../../../context/userContext";
 import theme from "../../../themes/theme";
+import { HiOutlineTrash } from "react-icons/hi";
 
 const Delete = (props) => {
   const toast = useToast();
@@ -42,14 +43,10 @@ const Delete = (props) => {
   };
 
   return (
-    <Button
-      backgroundColor={theme.colors.danger}
-      color="white"
-      onClick={handleClick}
-      _hover={{ backgroundColor: "#fafafa", color: "#FF0000" }}
-    >
-      Delete
-    </Button>
+    <Box onClick={handleClick}>
+        <HiOutlineTrash style={{ fontSize: "1.3rem", margin: "0 1rem" }} />
+        Delete
+    </Box>
   );
 };
 
