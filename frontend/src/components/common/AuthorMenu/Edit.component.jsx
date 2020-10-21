@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box } from "@chakra-ui/core";
 import { HiOutlinePencilAlt } from "react-icons/hi";
+import userContext from "../../../context/userContext";
+import { Link } from "react-router-dom";
+
 const Edit = (props) => {
-  const handleClick = () => {
-    console.log("Edit pressed");
-  };
   return (
-    <Box onClick={handleClick}>
-      <HiOutlinePencilAlt style={{ fontSize: "1.3rem", margin: "0 1rem" }}/> Edit
+    <Box>
+      <Link to={{
+        pathname:"/blogs/edit",
+        state:props
+      }}>
+        <HiOutlinePencilAlt style={{ fontSize: "1.3rem", margin: "0 1rem" }} />
+        Edit
+      </Link>
     </Box>
   );
 };
