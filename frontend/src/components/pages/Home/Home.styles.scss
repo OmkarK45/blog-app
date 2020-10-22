@@ -1,7 +1,13 @@
 .landing-text {
-  font-family: "Poppins";
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+  background-image: linear-gradient(90deg, #7928ca, #ff0080);
 }
 .banner {
   background-size: 100%;
+  background-repeat: no-repeat;
+  // height: calc(100vh - 4.2rem);
+  background-image: url('../../../assets/Images/bgp3.png');
 }
-

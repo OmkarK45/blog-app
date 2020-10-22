@@ -6,7 +6,6 @@ const authentication = require("../middleware/authentication");
 
 router.get("/", async (req, res) => {
   try {
-    // Find all blogs in the database
     const blogs = await Blog.find({ isApproved: true });
     res.json({ blogs });
   } catch (error) {
@@ -87,6 +86,7 @@ router.patch("/:author/:blogID", authentication, async (req, res) => {
     const blogToBeEdited = await Blog.updateOne(
       {
         _id: req.params.blogID,
+        author: req.params.author,
       },
       {
         $set: {
@@ -96,18 +96,16 @@ router.patch("/:author/:blogID", authentication, async (req, res) => {
         },
       }
     );
-    //  res.json({ msg: blogToBeEdited });
   } catch (error) {
-     res.json({ msg: error });
+    res.json({ msg: error });
   }
 });
 
-router.patch("/:author/:blogID", authentication, async (req, res) => {
+router.patch("/:blogID", authentication, async (req, res) => {
   try {
-    const updatedBlog = await Blog.updateOne(
+    const blogTobeApproved = await Blog.updateOne(
       {
         _id: req.params.blogID,
-        // author: req.params.author,
       },
       {
         $set: {
@@ -115,7 +113,8 @@ router.patch("/:author/:blogID", authentication, async (req, res) => {
         },
       }
     );
-    res.redirect("/blogs");
+
+    res.json(blogTobeApproved).status(200);
   } catch (error) {
     res.json({
       error:

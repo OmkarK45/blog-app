@@ -1,8 +1,8 @@
 export default {
   breakpoints: ["30em", "48em", "62em", "80em"],
   fonts: {
-    heading: '"Kumbh Sans", sans-serif',
-    body: '"Kumbh Sans",system-ui, sans-serif',
+    heading: '"Inter","Kumbh Sans", sans-serif',
+    body: '"Inter","Kumbh Sans",system-ui, sans-serif',
     mono: "Menlo, monospace",
   },
   colors: {
@@ -12,10 +12,10 @@ export default {
     dark: "#230C33",
     purple: "#592E83",
     accent: "#3b49df",
-    accentDark:'#323EBE',
-    background:"#fafafa",
-    white:"#fff",
-    black:"#000"
+    accentDark: "#323EBE",
+    background: "#fafafa",
+    white: "#fff",
+    black: "#000",
   },
   fontWeights: {
     bold: "700",

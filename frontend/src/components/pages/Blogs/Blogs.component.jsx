@@ -40,6 +40,8 @@ const Blogs = () => {
             fontFamily={theme.fonts.body}
             marginTop="1rem"
             textAlign={["center", "left"]}
+            letterSpacing= "-.05em"
+      
           >
             Trending Blogs
           </Heading>

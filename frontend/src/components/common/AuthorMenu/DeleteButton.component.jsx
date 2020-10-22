@@ -43,9 +43,16 @@ const Delete = (props) => {
   };
 
   return (
-    <Box onClick={handleClick}>
-        <HiOutlineTrash style={{ fontSize: "1.3rem", margin: "0 1rem" }} />
-        Delete
+    <Box
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      onClick={handleClick}
+    >
+      <Text>
+        <HiOutlineTrash style={{ margin: "0 0.3rem" }} fontSize="1.2rem" />
+      </Text>
+      <Text fontSize="1.2rem">Delete</Text>
     </Box>
   );
 };

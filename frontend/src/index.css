@@ -1,21 +1,23 @@
-@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  border: 1px solid black;
 }
 :root {
-  --headingFont: "Kumbh Sans", sans-serif;
-  --bodyFont: "Kumbh Sans", "Segoe UI", sans-serif;
+  --headingFont: "Inter", "Kumbh Sans", sans-serif;
+  --bodyFont: "Inter", "Kumbh Sans", "Segoe UI", sans-serif;
   --mono: monospace;
 }
 
 body {
   margin: 0;
 
-  font-family: "Kumbh Sans", "Segoe UI", -apple-system, BlinkMacSystemFont,
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: "Inter", "Kumbh Sans", "Segoe UI", -apple-system,
+    BlinkMacSystemFont, "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -24,15 +26,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-li{
+li {
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
 }
-button{
-  transition: transform .2s ease-in-out;
+button {
+  transition: transform 0.2s ease-in-out;
 }
-button:hover{
+button:hover {
   transform: translateY(-2px);
 }

@@ -15,8 +15,8 @@ import Delete from "./DeleteButton.component";
 import userContext from "../../../context/userContext";
 import { useEffect } from "react";
 import Edit from "./Edit.component";
-import { HiMenu,HiOutlineTrash } from "react-icons/hi";
-import EditPage from './../../pages/EditPage/EditPage.component';
+import { HiMenu, HiOutlineTrash } from "react-icons/hi";
+import EditPage from "./../../pages/EditPage/EditPage.component";
 
 const AuthorMenu = (props) => {
   const { userData } = useContext(userContext);
@@ -34,17 +34,15 @@ const AuthorMenu = (props) => {
               <MenuButton as={Button}>
                 <HiMenu />
               </MenuButton>
-              <MenuList minWidth="35px">
+              <MenuList minWidth="35px" display="block">
                 <MenuItem>
-                 <Delete data={props}/>
+                  <Delete data={props} />
                 </MenuItem>
                 <MenuItem>
-                  <Edit data={props}/>
+                  <Edit data={props} />
                 </MenuItem>
               </MenuList>
             </Menu>
-            {/* <Delete data={props} />
-            <Edit data={props} /> */}
           </div>
         ) : (
           ""

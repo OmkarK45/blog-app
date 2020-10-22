@@ -44,54 +44,65 @@ const Header = (props) => {
             <List className="logo" margin={["1rem", "0"]}>
               <ListItem>
                 <Heading
-                  style={{ fontFamily: theme.fonts.body, fontWeight: 400 }}
+                  style={{
+                    fontFamily: theme.fonts.body,
+                    fontWeight: 800,
+                    letterSpacing: "-.05em",
+                  }}
                 >
-                  <Link to="/">Blog.</Link>
+                  <Link to="/">Semicolon;</Link>
                 </Heading>
               </ListItem>
             </List>
             <List margin={["0"]} className="links">
               <Link to="/blogs">
-                <Text fontWeight="700" fontFamily={theme.fonts.body}>
-                  Explore
+                <Text fontWeight="400" fontFamily={theme.fonts.body}>
+                  EXPLORE
                 </Text>
               </Link>
-              {/* Add userData.user !== undefined on below line to enable user auth */}
               {userData.user ? (
                 <Box margin={["0", "0 auto"]}>
                   <Button
-                    padding={["0.2rem", "1rem"]}
                     backgroundColor="#f1c40f"
                     color="black"
                     maxW="7rem"
                     margin={["0 0.2rem", "0 1rem"]}
                   >
-                    {" "}
                     <Link to="/blogs/new">
                       <Flex>
-                        <AiOutlineFileAdd />
-                        <Text marginLeft="0.3rem" fontFamily={theme.fonts.body}>
-                          New Blog
+                        <Text
+                          fontWeight="400"
+                          marginLeft="0.3rem"
+                          fontFamily={theme.fonts.body}
+                        >
+                          NEW BLOG
                         </Text>
                       </Flex>
                     </Link>
                   </Button>
-                  <Button onClick={logout}>Log out</Button>
+                  <Button
+                    fontFamily="inherit"
+                    fontWeight="400"
+                    onClick={logout}
+                  >
+                    LOG OUT
+                  </Button>
                 </Box>
               ) : (
                 <>
                   <Link to="/user/register">
-                    <Text fontWeight="700" fontFamily={theme.fonts.body}>
-                      Register
+                    <Text fontWeight="400" fontFamily={theme.fonts.body}>
+                      REGISTER
                     </Text>
                   </Link>
                   <Link to="/user/login">
                     <Button
                       color="white"
-                      backgroundColor={theme.colors.primary}
-                      _hover={{ color: "black" }}
+                      backgroundColor={theme.colors.black}
+                      _hover={{ color: "white" }}
+                      fontWeight="400"
                     >
-                      Login
+                      LOGIN
                     </Button>
                   </Link>
                 </>

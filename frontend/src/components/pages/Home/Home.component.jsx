@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import home from "../../../assets/Images/bg.jpg";
 import userContext from "../../../context/userContext";
 import SEO from "./../../common/SEO/SEO.component";
+import { AiFillCalculator } from "react-icons/ai";
 
 const Home = (props) => {
   const { userData } = useContext(userContext);
@@ -20,58 +21,63 @@ const Home = (props) => {
       />
       <Box
         className="banner"
-        minH={["82vh", "91vh"]}
         display="flex"
         backgroundColor={theme.colors.white}
         justifyContent="center"
         position="relative"
+        minH={["82vh", "91vh"]}
+        // alignItems={["center", "center"]}
       >
-        <Flex marginTop={["4rem", "10rem"]} justifyContent={["center", ""]}>
+        <Flex>
           <Box
             className="ok"
             display="flex"
             flexDirection="column"
             padding="0 1rem"
-            margin="0 auto"
+            marginTop={["7rem", "7rem"]}
           >
             <Text
               style={{
                 fontFamily: theme.fonts.body,
                 fontWeight: theme.fontWeights.bold,
+                letterSpacing: "-.05em",
               }}
-              fontSize={["5xl", "6xl", "6xl", "6xl"]}
+              fontSize={["3.5rem", "6xl", "6xl", "5.5rem"]}
+              textAlign={["center", "left"]}
               className="landing-text"
             >
               Express your story.
             </Text>
-            <Text
-              style={{
-                fontSize: theme.fontSizes["3xl"],
-                fontFamily: theme.fonts.body,
-                fontWeight: theme.fontWeights.light,
-              }}
-            >
-              Publish your first blog.
-            </Text>
-            <Box mt="2rem">
+            <Flex mt="3rem" justifyContent={["center", ""]}>
               {userData.user ? (
                 ""
               ) : (
                 <Button
                   textTransform="uppercase"
                   marginRight="5"
-                  backgroundColor={theme.colors.primary}
+                  backgroundColor={theme.colors.black}
                   color="white"
+                  padding="15px 25px"
+                  fontSize="1.3rem"
+                  fontWeight="400"
+                  fontFamily="inherit"
+                  letterSpacing="-.03rem"
                   _hover="color:black"
                 >
                   <Link to="/user/login">Login</Link>
                 </Button>
               )}
 
-              <Button textTransform="uppercase">
+              <Button
+                textTransform="uppercase"
+                padding="15px 25px"
+                fontSize="1.3rem"
+                fontWeight="400"
+                letterSpacing="-.03rem"
+              >
                 <Link to="/blogs">Explore Blogs</Link>
               </Button>
-            </Box>
+            </Flex>
             <Box
               position="absolute"
               bottom={["-1px", "0"]}

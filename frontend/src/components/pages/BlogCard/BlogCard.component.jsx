@@ -5,8 +5,6 @@ import { Link, Redirect } from "react-router-dom";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import "./BlogCard.styles.scss";
 import Skeleton from "react-loading-skeleton";
-import { parseISO } from "date-fns";
-import format from "date-fns/format";
 import userContext from "../../../context/userContext";
 
 const BlogCard = (props) => {
@@ -20,14 +18,6 @@ const BlogCard = (props) => {
   const handleImageLoad = () => {
     setImageURL("loaded");
   };
-
-  const [dateVar, setDateVar] = useState("");
-
-  useEffect(() => {
-    var parsedDate = parseISO(props.data.date);
-    var result = format(parsedDate, "MMM d");
-    setDateVar(result);
-  }, []);
 
   return (
     <Link to={`/blogs/${props.data.author}/${props.data.slug}`}>
@@ -61,9 +51,10 @@ const BlogCard = (props) => {
               <Heading
                 fontSize={["1.5rem", "1.8rem"]}
                 fontFamily={theme.fonts.heading}
-                fontWeight={theme.fontWeights.bold}
+                fontFamily="system-ui"
+                fontWeight="700"
+                letterSpacing="-.03em"
               >
-                {/* Add Link tag surrounding this. */}
                 {props.data.title}
               </Heading>
               <Box marginTop="0.7rem">
@@ -88,9 +79,8 @@ const BlogCard = (props) => {
                       fontFamily={theme.fonts.heading}
                       marginLeft="0.7rem"
                     >
-                      {props.data.author} &nbsp; • {dateVar}
+                      {props.data.author} • {props.data.date}
                     </Text>
-                    {/* Future Update : Date in MM/DD */}
                   </Flex>
                 </Flex>
               </Box>

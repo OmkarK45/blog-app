@@ -1,20 +1,22 @@
 import React, { useContext } from "react";
-import { Box } from "@chakra-ui/core";
+import { Box, Text } from "@chakra-ui/core";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import userContext from "../../../context/userContext";
 import { Link } from "react-router-dom";
 
 const Edit = (props) => {
   return (
-    <Box>
-      <Link to={{
-        pathname:"/blogs/edit",
-        state:props
-      }}>
-        <HiOutlinePencilAlt style={{ fontSize: "1.3rem", margin: "0 1rem" }} />
-        Edit
-      </Link>
-    </Box>
+    <Link
+      to={{
+        pathname: "/blogs/edit",
+        state: props,
+      }}
+    >
+      <Box display="flex" alignItems="center" justifyContent="space-between">
+        <HiOutlinePencilAlt style={{margin:'0 0.3rem'}} fontSize="1.2rem"/>
+        <Text fontSize="1.2rem">Edit</Text>
+      </Box>
+    </Link>
   );
 };
 
