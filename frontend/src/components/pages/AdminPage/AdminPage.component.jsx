@@ -22,9 +22,8 @@ const AdminPage = () => {
   }, []);
 
   const handleApproval = (isApproved, blogObj) => {
-    console.log(isApproved, blogObj);
     console.log(userData.token);
-    const reqURL = `/blogs/${blogObj.author}/${blogObj._id}`;
+    const reqURL = `/blogs/${blogObj._id}`;
 
     const options = {
       headers: {
@@ -33,11 +32,12 @@ const AdminPage = () => {
     };
     axios
       .patch(reqURL, { isApproved }, options)
-      .then((res) =>
+      .then((res) => {
+        console.log(res);
         toast({
           title: "Post Approved!",
-        })
-      )
+        });
+      })
       .catch((err) =>
         toast({
           title: "Some error occured while approving.",
@@ -47,7 +47,7 @@ const AdminPage = () => {
   return (
     <React.Fragment>
       {/* {JSON.stringify(blogs)} */}
-      <SEO title="Command Center"/>
+      <SEO title="Command Center" />
       <h1>Admin Page</h1>
       <div className="table-container">
         <table>
