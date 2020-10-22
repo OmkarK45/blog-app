@@ -41,12 +41,12 @@ const NewBlog = () => {
         title: blogTitle,
         content: value,
         author: userData.user.username,
-        date: new Date(),
+        date: (new Date()).toDateString(),
         bannerURL: bannerURL,
         authorID: userData.user.id,
         avatar: userData.user.avatar,
       };
-
+      console.log("BlogData", blogData);
       const options = {
         headers: {
           "x-auth-token": userData.token,

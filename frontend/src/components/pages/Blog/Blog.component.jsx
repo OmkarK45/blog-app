@@ -20,8 +20,6 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 import { HiOutlineUserCircle } from "react-icons/hi";
-import { parseISO } from "date-fns";
-import format from "date-fns/format";
 import SEO from "./../../common/SEO/SEO.component";
 
 const Blog = (props) => {
@@ -67,19 +65,22 @@ const Blog = (props) => {
             borderRadius="10px"
           >
             <Box overflow="hidden">
-              {blog.bannerURL !== ""
-                ? (
-                    <Image
-                      src={blog.bannerURL}
-                      onLoad={handleImageLoad}
-                      w="100%"
-                      height="280px"
-                      maxH="280px"
-                      objectFit="cover"
-                      borderRadius="5px"
-                    ></Image>
-                  ) || <Skeleton />
-                : ""}
+              {/* {!image && <Skeleton />} */}
+              {/* if banner URL ==> check if image is loading, if yes, show skeleton, else load image,
+              no image ? show nothing  */}
+               {blog.bannerURL !== ""  ?(
+                <Image
+                  src={blog.bannerURL}
+                  onLoad={handleImageLoad}
+                  w="100%"
+                  height="280px"
+                  maxH="280px"
+                  objectFit="cover"
+                  borderRadius="5px"
+                ></Image>
+              ) : (
+                ""
+              )} 
             </Box>
 
             <Box
@@ -92,6 +93,8 @@ const Blog = (props) => {
                 marginTop={["2rem", "1.7rem", "1.4rem", "1.6rem"]}
                 padding={[""]}
                 fontFamily={theme.fonts.body}
+                fontWeight='700'
+                letterSpacing='-.05em'
               >
                 {blog.title || <Skeleton />}
               </Heading>
