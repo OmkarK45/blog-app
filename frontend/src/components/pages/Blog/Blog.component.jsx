@@ -65,9 +65,6 @@ const Blog = (props) => {
             borderRadius="10px"
           >
             <Box overflow="hidden">
-              {/* {!image && <Skeleton />} */}
-              {/* if banner URL ==> check if image is loading, if yes, show skeleton, else load image,
-              no image ? show nothing  */}
                {blog.bannerURL !== ""  ?(
                 <Image
                   src={blog.bannerURL}
