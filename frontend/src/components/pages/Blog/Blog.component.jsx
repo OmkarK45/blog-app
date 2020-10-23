@@ -53,6 +53,7 @@ const Blog = (props) => {
   return (
     <React.Fragment>
       <SEO title={blog.title} />
+
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
@@ -65,7 +66,7 @@ const Blog = (props) => {
             borderRadius="10px"
           >
             <Box overflow="hidden">
-               {blog.bannerURL !== ""  ?(
+              {blog.bannerURL !== "" ? (
                 <Image
                   src={blog.bannerURL}
                   onLoad={handleImageLoad}
@@ -77,7 +78,7 @@ const Blog = (props) => {
                 ></Image>
               ) : (
                 ""
-              )} 
+              )}
             </Box>
 
             <Box
@@ -90,8 +91,8 @@ const Blog = (props) => {
                 marginTop={["2rem", "1.7rem", "1.4rem", "1.6rem"]}
                 padding={[""]}
                 fontFamily={theme.fonts.body}
-                fontWeight='700'
-                letterSpacing='-.05em'
+                fontWeight="700"
+                letterSpacing="-.05em"
               >
                 {blog.title || <Skeleton />}
               </Heading>

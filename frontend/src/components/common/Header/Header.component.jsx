@@ -74,6 +74,8 @@ const Header = (props) => {
                           fontWeight="400"
                           marginLeft="0.3rem"
                           fontFamily={theme.fonts.body}
+                          padding={["0 0.5rem", "0 1rem"]}
+
                         >
                           NEW BLOG
                         </Text>
@@ -84,6 +86,7 @@ const Header = (props) => {
                     fontFamily="inherit"
                     fontWeight="400"
                     onClick={logout}
+                    padding={["0 0.5rem", "0 1rem"]}
                   >
                     LOG OUT
                   </Button>
@@ -100,6 +103,7 @@ const Header = (props) => {
                       color="white"
                       backgroundColor={theme.colors.black}
                       _hover={{ color: "white" }}
+                      padding={["0 0.5rem", "0 1rem"]}
                       fontWeight="400"
                     >
                       LOGIN

@@ -16,7 +16,7 @@ const Home = (props) => {
   return (
     <React.Fragment>
       <SEO
-        title="Welcome! | ExpressBlogs"
+        title="Welcome! | Semicolon;"
         content="Explore or write your own blog very easily! Just a signup required or explore blogs written by experts and loved by users."
       />
       <Box

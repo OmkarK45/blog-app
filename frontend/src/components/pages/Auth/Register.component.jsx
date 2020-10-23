@@ -16,7 +16,6 @@ import theme from "../../../themes/theme";
 import axios from "axios";
 import SEO from "./../../common/SEO/SEO.component";
 
-
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,7 +47,6 @@ const Register = () => {
         if (res.status === 200) {
           toast({ title: "Registerd!", isClosable: true });
           history.push("/");
-
         } else {
           throw new Error();
         }
@@ -85,7 +83,7 @@ const Register = () => {
 
   return (
     <React.Fragment>
-      <SEO title="Register."/>
+      <SEO title="Register." />
       <Flex justifyContent="center">
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}
@@ -96,7 +94,9 @@ const Register = () => {
           backgroundColor="white"
         >
           <Box margin="0 auto">
-            <Heading fontFamily={theme.fonts.body}>Register.</Heading>
+            <Heading fontFamily={theme.fonts.body} letterSpacing="-.05em">
+              Register.
+            </Heading>
           </Box>
           <form onSubmit={handleSubmit}>
             <FormControl marginTop="2rem">

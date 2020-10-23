@@ -10,11 +10,13 @@ import {
   Input,
   Heading,
   useToast,
+  Text,
   Button,
 } from "@chakra-ui/core";
+
 import theme from "../../../themes/theme";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import userContext from "../../../context/userContext";
 import SEO from "./../../common/SEO/SEO.component";
@@ -74,7 +76,7 @@ const Login = (props) => {
 
   return (
     <React.Fragment>
-      <SEO title='Login.'/>
+      <SEO title="Login." />
       <Flex justifyContent="center">
         <Box
           w={["90%", "70%", "60%", "38%", "28%"]}
@@ -85,7 +87,9 @@ const Login = (props) => {
           backgroundColor="white"
         >
           <Box margin="0 auto">
-            <Heading fontFamily={theme.fonts.body}>Login.</Heading>
+            <Heading fontFamily={theme.fonts.body} letterSpacing="-.05em">
+              Login.
+            </Heading>
           </Box>
           <form onSubmit={handleSubmit}>
             <FormControl marginTop="2rem">
@@ -125,6 +129,12 @@ const Login = (props) => {
               Login
             </Button>
           </form>
+          <Box marginTop="1rem">
+            Don't have an account ?
+            <Link to="/user/register">
+              <Text color={theme.colors.accent}>Register Here.</Text>
+            </Link>
+          </Box>
         </Box>
       </Flex>
     </React.Fragment>
