@@ -52,31 +52,34 @@ const Home = (props) => {
               {userData.user ? (
                 ""
               ) : (
+                <Link to="/user/login">
+                  <Button
+                    textTransform="uppercase"
+                    marginRight="5"
+                    backgroundColor={theme.colors.black}
+                    color="white"
+                    padding="15px 25px"
+                    fontSize="1.3rem"
+                    fontWeight="400"
+                    fontFamily="inherit"
+                    letterSpacing="-.03rem"
+                    _hover="color:black"
+                  >
+                    Login
+                  </Button>
+                </Link>
+              )}
+              <Link to="/blogs">
                 <Button
                   textTransform="uppercase"
-                  marginRight="5"
-                  backgroundColor={theme.colors.black}
-                  color="white"
                   padding="15px 25px"
                   fontSize="1.3rem"
                   fontWeight="400"
-                  fontFamily="inherit"
                   letterSpacing="-.03rem"
-                  _hover="color:black"
                 >
-                  <Link to="/user/login">Login</Link>
+                  Explore Blogs
                 </Button>
-              )}
-
-              <Button
-                textTransform="uppercase"
-                padding="15px 25px"
-                fontSize="1.3rem"
-                fontWeight="400"
-                letterSpacing="-.03rem"
-              >
-                <Link to="/blogs">Explore Blogs</Link>
-              </Button>
+              </Link>
             </Flex>
             <Box
               position="absolute"
