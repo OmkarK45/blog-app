@@ -149,8 +149,9 @@ const Register = () => {
               type="submit"
               w="100%"
               color="white"
-              _hover={{ color: "black" }}
+              _hover={{ color: "white" }}
               backgroundColor={theme.colors.primary}
+              backgroundImage={theme.colors.gradient}
               marginTop="1.5rem"
             >
               Register

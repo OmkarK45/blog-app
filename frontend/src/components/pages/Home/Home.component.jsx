@@ -34,7 +34,7 @@ const Home = (props) => {
             display="flex"
             flexDirection="column"
             padding="0 1rem"
-            marginTop={["7rem", "7rem"]}
+            marginTop={["3rem", "7rem"]}
           >
             <Text
               style={{
@@ -57,6 +57,7 @@ const Home = (props) => {
                     textTransform="uppercase"
                     marginRight="5"
                     backgroundColor={theme.colors.black}
+                    backgroundImage={theme.colors.gradient}
                     color="white"
                     padding="15px 25px"
                     fontSize="1.3rem"
@@ -77,7 +78,7 @@ const Home = (props) => {
                   fontWeight="400"
                   letterSpacing="-.03rem"
                 >
-                  Explore Blogs
+                  Explore
                 </Button>
               </Link>
             </Flex>
@@ -88,7 +89,7 @@ const Home = (props) => {
               transform="translateX(-50%)"
               margin="0 auto"
               padding="1rem 0"
-              width="90%"
+              width={['80%', '55%']}
             >
               <Text
                 marginBottom="1rem"

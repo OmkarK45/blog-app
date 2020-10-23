@@ -122,8 +122,8 @@ const Login = (props) => {
               type="submit"
               w="100%"
               color="white"
-              _hover={{ color: "black" }}
-              backgroundColor={theme.colors.primary}
+              _hover={{ color: "white" }}
+              backgroundImage={theme.colors.gradient}
               marginTop="1.5rem"
             >
               Login

@@ -6,6 +6,7 @@ export default {
     mono: "Menlo, monospace",
   },
   colors: {
+    gradient : 'linear-gradient(90deg, #7928ca, #ff0080)',
     primary: "#27ae60",
     danger: "#c0392b",
     info: "#8e44ad",
