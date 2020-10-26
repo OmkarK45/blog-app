@@ -21,7 +21,14 @@ import { useHistory } from "react-router-dom";
 import AuthorMenu from "./../../common/AuthorMenu/AuthorMenu.component";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import SEO from "./../../common/SEO/SEO.component";
-
+import {
+  TwitterShareButton,
+  TwitterIcon,
+  FacebookShareButton,
+  FacebookIcon,
+} from "react-share";
+import { AiFillTwitterCircle } from "react-icons/ai";
+import { FaFacebook, FaReddit, FaWhatsapp } from "react-icons/fa";
 const Blog = (props) => {
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
@@ -56,7 +63,9 @@ const Blog = (props) => {
 
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
-          <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
+          <Box w="100%" h="2rem">
+            <Text textAlign="center">Sharing is caring !</Text>
+          </Box>
           <Box
             w="100%"
             margin={["1.4rem 0"]}
@@ -153,7 +162,11 @@ const Blog = (props) => {
               </Box>
             </Box>
           </Box>
-          <Box w="100%" h="10" display={["none", "none", "none", "block"]} />
+          <Box
+            w="100%"
+            h="10"
+            display={["none", "none", "none", "block"]}
+          ></Box>
         </Grid>
       </Box>
     </React.Fragment>

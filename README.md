@@ -89,4 +89,5 @@ TODO -
 - Add edit button to edit the blog and prepopulate the blog edit page. [DONE]
 
 ### Todo for today : 
-1. UI Overhaul - Buttons, Fonts, Borders, Shadows
+1. UI Overhaul - Buttons, Fonts, Borders, Shadows - Done
+2. Adding Share buttons - Twitter, Facebook, Whatsapp and Reddit!
