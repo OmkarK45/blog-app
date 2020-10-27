@@ -44,8 +44,6 @@ const Login = (props) => {
     axios
       .post("/user/login", loginCreds)
       .then((res) => {
-        console.log(res.data.user);
-
         setUserData({
           token: res.data.token,
           user: res.data.user,

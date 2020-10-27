@@ -63,9 +63,7 @@ const Blog = (props) => {
 
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
-          <Box w="100%" h="2rem">
-            <Text textAlign="center">Sharing is caring !</Text>
-          </Box>
+          <Box w="100%" h="2rem"></Box>
           <Box
             w="100%"
             margin={["1.4rem 0"]}
@@ -116,7 +114,10 @@ const Blog = (props) => {
                       <Image
                         display="block"
                         borderRadius="50%"
+                        height="45px"
+                        width="45px"
                         src={blog.avatar}
+                        objectFit="cover"
                       />
                     ) : (
                       <HiOutlineUserCircle className="user-icon" />
@@ -130,14 +131,13 @@ const Blog = (props) => {
                     >
                       {blog.author}
                     </Text>
-                    <Text fontSize={theme.fontSizes["sm"]}>{blog.date}</Text>
+                    <Text color='#808080' fontSize={theme.fontSizes["sm"]}>{blog.date}</Text>
                   </Box>
                 </Box>
 
                 <Box>
                   <userContext.Consumer>
                     {(value) => {
-                      console.log("Inside Consumer", value.userData);
                       if (value.userData.user) {
                         return (
                           <AuthorMenu

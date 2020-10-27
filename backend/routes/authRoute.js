@@ -116,9 +116,7 @@ router.post("/register", async (req, res) => {
           newUser.password = hash;
 
           newUser.save().then((user) => {
-            console.log("Registration succeed.");
             res.json({ msg: "User registered." }).status(200);
-            // redirect user after registration.
           });
         });
       });

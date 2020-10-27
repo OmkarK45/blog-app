@@ -13,7 +13,6 @@ const Delete = (props) => {
   const { userData } = useContext(userContext);
   const handleClick = () => {
     const { author, _id } = props.data.blogInfo;
-    console.log(props.data, _id);
     const reqURL = `/blogs/${author}/${_id}`;
     const options = {
       headers: {
@@ -31,7 +30,6 @@ const Delete = (props) => {
         history.goBack();
       })
       .catch((err) => {
-        console.log(err);
         toast({
           title: "Success!",
           description: "Blog deleted. Refresh to see changes.",

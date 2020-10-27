@@ -15,14 +15,17 @@ const AdminPage = () => {
     axios
       .get("/blogs/unapproved")
       .then((res) => {
-        console.log(res.data);
         setBlogs(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast({
+          title:"Error!",
+          description:"Error while approving the blog"
+        })
+      });
   }, []);
 
   const handleApproval = (isApproved, blogObj) => {
-    console.log(userData.token);
     const reqURL = `/blogs/${blogObj._id}`;
 
     const options = {
@@ -33,7 +36,6 @@ const AdminPage = () => {
     axios
       .patch(reqURL, { isApproved }, options)
       .then((res) => {
-        console.log(res);
         toast({
           title: "Post Approved!",
         });

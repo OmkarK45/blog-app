@@ -21,10 +21,6 @@ import EditPage from "./../../pages/EditPage/EditPage.component";
 const AuthorMenu = (props) => {
   const { userData } = useContext(userContext);
 
-  console.log("Current user", props.data._id);
-  console.log("Current userData", userData.user.id);
-  console.log("Blogs author", props.blogInfo.authorID);
-
   return (
     <React.Fragment>
       {props.blogInfo ? (

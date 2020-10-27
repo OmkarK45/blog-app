@@ -26,8 +26,6 @@ router.get("/unapproved", async (req, res) => {
 
 router.get("/new", authentication, async (req, res) => {
   try {
-    // Render the react page
-    console.log(req.user);
   } catch (error) {
     res.json({ error: "Some Error occured. Please try again." }).status(500);
   }
@@ -46,7 +44,6 @@ router.post("/new", authentication, async (req, res) => {
   try {
     const savedBlog = await newBlog.save();
     res.redirect("/blogs");
-    console.log(savedBlog);
   } catch (error) {
     res.json({
       error: "Some error occured while saving your blog. Please try again.",
@@ -70,7 +67,6 @@ router.get("/:username/:slug", async (req, res) => {
 });
 
 router.delete("/:username/:blogID", authentication, async (req, res) => {
-  console.log("Found a delete request from react.");
   try {
     const removedBlog = await Blog.deleteOne({
       _id: req.params.blogID,

@@ -8,7 +8,6 @@ export async function submitService(creds){
         }else{
             localStorage.setItem('x-auth-token', null)
         }
-        console.log(res);
         return res
     })
     .then(res=>{

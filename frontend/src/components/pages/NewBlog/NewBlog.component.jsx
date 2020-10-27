@@ -25,7 +25,6 @@ const NewBlog = () => {
   const toast = useToast();
   let isSubmitting = false;
   const handleSubmit = (e) => {
-    console.log("Current userdata is ", userData);
     e.preventDefault();
     const { user, token } = userData;
     if (!user) {
@@ -46,7 +45,6 @@ const NewBlog = () => {
         authorID: userData.user.id,
         avatar: userData.user.avatar,
       };
-      console.log("BlogData", blogData);
       const options = {
         headers: {
           "x-auth-token": userData.token,
