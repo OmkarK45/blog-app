@@ -8,7 +8,9 @@ import SEO from "./../../common/SEO/SEO.component";
 
 const Blogs = () => {
   //   const [blogsList, setBlogsList] = useState();
-  const [{ data, loading, error }, refetch] = useAxios("/blogs");
+  const [{ data, loading, error }, refetch] = useAxios(
+    process.env.REACT_APP_BACKEND + "/blogs"
+  );
   if (loading)
     return (
       <Flex justifyContent="center">
@@ -19,7 +21,7 @@ const Blogs = () => {
 
   return (
     <div>
-      <SEO title="Trending Blogs."/>
+      <SEO title="Trending Blogs." />
       <Grid
         margin="0 auto"
         maxW={["99%", "90%", "95%", "99%"]}
@@ -27,7 +29,6 @@ const Blogs = () => {
         // templateColumns="1fr 70ch 1fr"
         templateColumns={["1fr", "1fr", "1fr", "1fr 60ch 1fr", "1fr 70ch 1fr"]}
         gap={2}
-        
       >
         <Box
           w="100%"
@@ -40,8 +41,7 @@ const Blogs = () => {
             fontFamily={theme.fonts.body}
             marginTop="1rem"
             textAlign={["center", "left"]}
-            letterSpacing= "-.05em"
-      
+            letterSpacing="-.05em"
           >
             Trending Blogs
           </Heading>

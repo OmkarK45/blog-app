@@ -39,7 +39,7 @@ const Blog = (props) => {
 
   useEffect(() => {
     axios
-      .get(reqURL)
+      .get(process.env.REACT_APP_BACKEND + reqURL)
       .then((res) => {
         setBlog(res.data);
       })
@@ -131,7 +131,9 @@ const Blog = (props) => {
                     >
                       {blog.author}
                     </Text>
-                    <Text color='#808080' fontSize={theme.fontSizes["sm"]}>{blog.date}</Text>
+                    <Text color="#808080" fontSize={theme.fontSizes["sm"]}>
+                      {blog.date}
+                    </Text>
                   </Box>
                 </Box>
 

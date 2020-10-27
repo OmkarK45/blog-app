@@ -40,7 +40,7 @@ const NewBlog = () => {
         title: blogTitle,
         content: value,
         author: userData.user.username,
-        date: (new Date()).toDateString(),
+        date: new Date().toDateString(),
         bannerURL: bannerURL,
         authorID: userData.user.id,
         avatar: userData.user.avatar,
@@ -52,7 +52,7 @@ const NewBlog = () => {
       };
       if (userData.user.id) {
         axios
-          .post("/blogs/new", blogData, options)
+          .post(process.env.REACT_APP_BACKEND + "/blogs/new", blogData, options)
           .then(() => {
             history.push("/blogs");
             toast({

@@ -45,7 +45,7 @@ const EditPage = (props) => {
           return req;
         });
         axios
-          .patch(reqURL, editedBlogData)
+          .patch(process.env.REACT_APP_BACKEND + reqURL, editedBlogData)
           .then((res) => {
             toast({
               title: "Successfully Edited!",
@@ -53,6 +53,7 @@ const EditPage = (props) => {
               status: "success",
               isClosable: true,
             });
+            console.log(res);
             history.push("/blogs");
           })
           .catch((err) => {

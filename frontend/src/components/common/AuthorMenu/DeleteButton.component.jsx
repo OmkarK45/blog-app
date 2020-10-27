@@ -20,7 +20,7 @@ const Delete = (props) => {
       },
     };
     axios
-      .delete(reqURL, options)
+      .delete(process.env.REACT_APP_BACKEND + reqURL, options)
       .then((res) => {
         toast({
           title: "Blog deleted!",

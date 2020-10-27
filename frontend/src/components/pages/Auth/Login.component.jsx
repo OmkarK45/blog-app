@@ -42,7 +42,7 @@ const Login = (props) => {
     if (!email || !password)
       return toast({ title: "Please fill all the fields." });
     axios
-      .post("/user/login", loginCreds)
+      .post(process.env.REACT_APP_BACKEND + "/user/login", loginCreds)
       .then((res) => {
         setUserData({
           token: res.data.token,

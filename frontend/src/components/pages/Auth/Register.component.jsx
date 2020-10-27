@@ -42,7 +42,7 @@ const Register = () => {
     const registerCreds = { email, password, username, avatar };
     const loginCreds = { email, password };
     await axios
-      .post("/user/register", registerCreds)
+      .post(process.env.REACT_APP_BACKEND + "/user/register", registerCreds)
       .then((res) => {
         if (res.status === 200) {
           toast({ title: "Registerd!", isClosable: true });
@@ -60,7 +60,7 @@ const Register = () => {
         history.push("/register");
       });
     axios
-      .post("/user/login", loginCreds)
+      .post(process.env.REACT_APP_BACKEND + "/user/login", loginCreds)
       .then((res) => {
         setUserData({
           token: res.data.token,

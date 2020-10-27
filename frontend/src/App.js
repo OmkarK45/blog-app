@@ -15,7 +15,7 @@ import Register from "./components/pages/Auth/Register.component";
 import NotFound from "./components/pages/404/NotFound.component";
 import Header from "./components/common/Header/Header.component";
 import AdminPage from "./components/pages/AdminPage/AdminPage.component";
-import EditPage from './components/pages/EditPage/EditPage.component';
+import EditPage from "./components/pages/EditPage/EditPage.component";
 import axios from "axios";
 import userContext from "./context/userContext";
 
@@ -33,17 +33,28 @@ const App = () => {
         localStorage.setItem("x-auth-token", "");
         token = "";
       }
-      const tokenRes = await axios.post("/user/tokenIsValid", null, {
-        headers: { "x-auth-token": token },
-      });
-      if (tokenRes.data) {
-        const userRes = await axios.get("/user", {
-          headers: { "x-auth-token": token },
-        });
-        setUserData({
-          token,
-          user: userRes.data,
-        });
+      try {
+        const tokenRes = await axios.post(
+          process.env.REACT_APP_BACKEND + "/user/tokenIsValid",
+          null,
+          {
+            headers: { "x-auth-token": token },
+          }
+        );
+        if (tokenRes.data) {
+          const userRes = await axios.get(
+            process.env.REACT_APP_BACKEND + "/user",
+            {
+              headers: { "x-auth-token": token },
+            }
+          );
+          setUserData({
+            token,
+            user: userRes.data,
+          });
+        }
+      } catch (error) {
+        console.log("Not logged in");
       }
     };
 

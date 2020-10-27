@@ -13,15 +13,15 @@ const AdminPage = () => {
   const toast = useToast();
   useEffect(() => {
     axios
-      .get("/blogs/unapproved")
+      .get(process.env.REACT_APP_BACKEND + "/blogs/unapproved")
       .then((res) => {
         setBlogs(res.data);
       })
       .catch((err) => {
         toast({
-          title:"Error!",
-          description:"Error while approving the blog"
-        })
+          title: "Error!",
+          description: "Error while approving the blog",
+        });
       });
   }, []);
 
@@ -34,7 +34,7 @@ const AdminPage = () => {
       },
     };
     axios
-      .patch(reqURL, { isApproved }, options)
+      .patch(process.env.REACT_APP_BACKEND + reqURL, { isApproved }, options)
       .then((res) => {
         toast({
           title: "Post Approved!",
