@@ -20,7 +20,13 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(methodOverride("_method"));
-app.use(cors());
+
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200, // For legacy browser support
+};
+
+app.use(cors(corsOptions));
 app.use(morgan("tiny"));
 // Routes
 app.use("/", homeRoute);
