@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Blog = require("../models/Blog").schema;
+const Joi = require("@hapi/joi");
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -43,4 +44,13 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+function validateUser(user) {
+  const schema = {
+    email: Joi.string().min(3).max(255).required().email(),
+  };
+  return schema.validate(user);
+
+}
+
+exports.validate = validateUser;
 module.exports = mongoose.model("User", userSchema);
