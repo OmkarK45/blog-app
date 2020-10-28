@@ -126,7 +126,15 @@ const NewBlog = () => {
             placeholder="New blog title here..."
           />
           <Box></Box>
-          <MDEditor height={400} value={value} onChange={setValue} />
+          <MDEditor
+            height={400}
+            value={value}
+            onChange={setValue}
+            previewOptions={{
+              transformLinkUri: null,
+              skipHtml: true,
+            }}
+          />
           <Flex margin="1rem 0">
             <Button
               backgroundColor={theme.colors.accent}
