@@ -29,6 +29,8 @@ import {
 } from "react-share";
 import { AiFillTwitterCircle } from "react-icons/ai";
 import { FaFacebook, FaReddit, FaWhatsapp } from "react-icons/fa";
+import SocialMedia from "../../common/SocialMedia/SocialMedia.component";
+
 const Blog = (props) => {
   const [blog, setBlog] = useState("");
   const [image, setImageURL] = useState("");
@@ -63,7 +65,9 @@ const Blog = (props) => {
 
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
-          <Box w="100%" h="2rem"></Box>
+          <Box w="100%" h="2rem">
+            <SocialMedia link="https://github.com" />
+          </Box>
           <Box
             w="100%"
             margin={["1.4rem 0"]}
@@ -72,7 +76,10 @@ const Blog = (props) => {
             boxShadow="0 0 0 1px rgba(8,9,10,0.1)"
             borderRadius="10px"
           >
-            <Box overflow="hidden">
+            <Box
+              overflow="hidden"
+              boxShadow=" 0px 18px 39px 10px rgba(153,153,153,0.61)"
+            >
               {blog.bannerURL !== "" ? (
                 <Image
                   src={blog.bannerURL}
