@@ -114,7 +114,7 @@ export const defaults = {
     return (
       <Heading
         my={4}
-        fontWeight="400"
+        fontWeight="700"
         as={`h${level}`}
         size={sizes[`${level - 1}`]}
         fontSize={["1.9rem"]}
