@@ -58,7 +58,27 @@ export const defaults = {
     return <Text as="del">{children}</Text>;
   },
   thematicBreak: Divider,
-  link: Link,
+  link: (props) => {
+    const { children } = props;
+    return (
+      <Link
+        style={{
+          textDecoration: "none",
+          color: "inherit",
+          outline: "none",
+          transition: "background-color .25s ease-out",
+          display: "inline-block",
+          padding: "0 1px",
+          borderBottom: "0.2em solid #ccc",
+        }}
+        _hover={{
+          backgroundColor: "#ccc",
+        }}
+      >
+        {children}
+      </Link>
+    );
+  },
   img: Image,
   linkReference: Link,
   imageReference: Image,

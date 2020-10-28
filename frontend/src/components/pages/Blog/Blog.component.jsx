@@ -111,7 +111,7 @@ const Blog = (props) => {
                 {blog.title || <Skeleton />}
               </Heading>
               <Box
-                margin="1.5rem 0"
+                margin="1.9rem 0"
                 display="flex"
                 justifyContent={["space-between"]}
               >
@@ -132,7 +132,7 @@ const Blog = (props) => {
                   </Box>
                   <Box>
                     <Text
-                      fontSize={theme.fontSizes["md"]}
+                      fontSize={theme.fontSizes["lg"]}
                       fontWeight="bold"
                       fontFamily={theme.fonts.body}
                     >
