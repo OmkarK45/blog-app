@@ -62,6 +62,8 @@ export const defaults = {
     const { children } = props;
     return (
       <Link
+        href={props.href}
+        isExternal
         style={{
           textDecoration: "none",
           color: "inherit",
