@@ -66,7 +66,7 @@ const Blog = (props) => {
       <Box maxW={["98%", "100%", "99%"]} margin={["0 auto"]}>
         <Grid templateColumns={["1fr", "1fr", "1fr", "1fr 75ch 1fr"]} gap={2}>
           <Box w="100%" h="2rem">
-            <SocialMedia link="https://github.com" />
+            <SocialMedia link={window.location.href} />
           </Box>
           <Box
             w="100%"
