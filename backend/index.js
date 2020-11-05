@@ -35,10 +35,10 @@ app.use("/user", authRoute);
 
 // DB Configuration
 mongoose.connect(
-  process.env.DB_URI_LOCAL,
+  process.env.DB_URI_ATLAS,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   () => {
-    console.log("Connected to LOCAL database.");
+    console.log("Connected to Cloud database.");
   }
 );
 

@@ -50,7 +50,7 @@ const Delete = (props) => {
       <Text>
         <HiOutlineTrash style={{ margin: "0 0.3rem" }} fontSize="1.2rem" />
       </Text>
-      <Text fontSize="1.2rem">Delete</Text>
+      <Text fontSize="1.2rem">Unpublish</Text>
     </Box>
   );
 };

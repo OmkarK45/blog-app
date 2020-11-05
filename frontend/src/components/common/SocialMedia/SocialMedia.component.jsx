@@ -21,6 +21,8 @@ const SocialMedia = (props) => {
             props.link +
             "&text=Checkout my blog published on semicolon! Do read and share!"
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <AiFillTwitterCircle style={{ color: "#1da1f2" }} size="45px" />
         </a>
@@ -33,9 +35,10 @@ const SocialMedia = (props) => {
       <Box margin="0.5rem 0">
         <a
           href={
-            "https://api.whatsapp.com/send?text=Checkout my blog on semicolon! " +
-            props.link
+            "whatsapp://send?text=Checkout my blog on semicolon! " + props.link
           }
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <IoLogoWhatsapp style={{ color: "#25d366" }} size="45px" />
         </a>
@@ -43,6 +46,8 @@ const SocialMedia = (props) => {
       <Box margin="0.5rem 0">
         <a
           href={`https://www.linkedin.com/shareArticle?mini=true&url=${props.link}&title=Checkout%20my%20blog!&summary=&source=`}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <AiFillLinkedin style={{ color: "#0077b5" }} size="45px" />
         </a>

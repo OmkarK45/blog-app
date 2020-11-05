@@ -106,7 +106,9 @@ const NewBlog = () => {
       >
         <form onSubmit={handleSubmit}>
           <Flex margin="1rem 0" alignItems="center">
-            <Heading marginRight="2rem">New Blog</Heading>
+            <Heading letterSpacing="-.05em" marginRight="2rem">
+              New Blog
+            </Heading>
           </Flex>
           <Input
             width="50%"
