@@ -18,7 +18,7 @@ const SocialMedia = (props) => {
         <a
           href={
             `https://twitter.com/intent/tweet?url=` +
-            props.link +
+            encodeURIComponent(props.link) +
             "&text=Checkout my blog published on semicolon! Do read and share!"
           }
           target="_blank"
@@ -35,7 +35,8 @@ const SocialMedia = (props) => {
       <Box margin="0.5rem 0">
         <a
           href={
-            "whatsapp://send?text=Checkout my blog on semicolon! " + props.link
+            "whatsapp://send?text=Checkout my blog on semicolon! " +
+            encodeURIComponent(props.link)
           }
           target="_blank"
           rel="noopener noreferrer"
@@ -45,7 +46,9 @@ const SocialMedia = (props) => {
       </Box>
       <Box margin="0.5rem 0">
         <a
-          href={`https://www.linkedin.com/shareArticle?mini=true&url=${props.link}&title=Checkout%20my%20blog!&summary=&source=`}
+          href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+            props.link
+          )}&title=Checkout%20my%20blog!&summary=&source=`}
           target="_blank"
           rel="noopener noreferrer"
         >
