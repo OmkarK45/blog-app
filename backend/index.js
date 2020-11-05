@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(methodOverride("_method"));
 
 var corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://semicolon-blog.netlify.app/",
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
