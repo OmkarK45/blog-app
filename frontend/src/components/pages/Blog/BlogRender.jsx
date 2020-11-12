@@ -139,7 +139,7 @@ export const defaults = {
         fontWeight="700"
         as={`h${level}`}
         size={sizes[`${level - 1}`]}
-        fontSize={["1.9rem"]}
+        // fontSize={["1.9rem"]}
         {...getCoreProps(props)}
       >
         {children}
