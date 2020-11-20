@@ -19,6 +19,11 @@ import EditPage from "./components/pages/EditPage/EditPage.component";
 import axios from "axios";
 import userContext from "./context/userContext";
 
+// Ananlytics CODE
+
+
+
+
 const App = () => {
   const [userData, setUserData] = useState({
     token: undefined,
