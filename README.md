@@ -12,7 +12,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Visit</a> •
+  <a href="#visit">Visit</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a>
 </p>
@@ -35,6 +35,10 @@
 - Share your blog on Twitter, WhatsApp and LinkedIn
 - Full screen mode
   - Write distraction free.
+
+## Visit
+
+You can visit [here](http://semicolon-blog.netlify.app)
 
 ## How To Use
 
