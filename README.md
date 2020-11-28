@@ -54,16 +54,25 @@ $ cd backend
 # Go into the repository
 $ cd frontend
 
-# Install dependencies
-$ npm install
+# Install dependencies in backend by using 
+$ npm install (wait 5mins)
+
+# Install the frontend dependencies by using 
+$ yarn install (wait 5mins)
 
 # Setup environment variables
-$ MongoDB Atlas URL or a Local Database.
+$ In backend folder, create a file called '.env' 
+$ Declare the following variables as env vars : ACCESS_TOKEN, REFRESH_TOKEN_SECRET, JWT_SECRET='some secure string'(required), DB_URI_LOCAL=mongodb://localhost/blogdb (if db doesn't exist, it'll create one.), DB_URI_ATLAS='the url from mongo cloud atlas' (optional) 
 
 # Run the backend
+$cd backend
 $ npm start
 
-# Run the frontend by setting proxy to backend in package.json
+# Run the frontend by setting proxy to frontend in package.json
+$ add this line at line 2 in frontend/package.json >> "proxy" : "https://localhost:3001"
+
+# Run the frontend
+$cd frontend
 $ yarn start
 ```
 
